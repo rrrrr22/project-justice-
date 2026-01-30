@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bbtd6g42nymhl"]
+
+[ext_resource type="Script" uid="uid://bxujbbqrbau8b" path="res://Common/Abstract/body_shape_cast.gd" id="1_ba112"]
+
+[node name="CollisionCast" type="RayCast2D" unique_id=1952425458]
+target_position = Vector2(0, 0)
+collision_mask = 3
+script = ExtResource("1_ba112")

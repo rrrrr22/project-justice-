@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dfdnbjm0bw5fy"]
+
+[ext_resource type="Script" uid="uid://up10r7yistxt" path="res://Common/Systems/Global/justice_global.gd" id="1_tsfpd"]
+
+[node name="JusticeGlobal" type="Node" unique_id=1986704972]
+script = ExtResource("1_tsfpd")
+starting_room = "uid://c5kibu27hcmi3"

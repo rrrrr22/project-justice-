@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dy480eaqwso3v"]
+
+[sub_resource type="GDScript" id="GDScript_i2gq8"]
+script/source = "class_name Register extends Node
+"
+
+[node name="Register" type="Node" unique_id=1053875525]
+script = SubResource("GDScript_i2gq8")

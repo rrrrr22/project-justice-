@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cdj2n00klmmxt"]
+
+[ext_resource type="Script" uid="uid://hrm65h0jmlel" path="res://Common/Abstract/entity.gd" id="1_vdqhm"]
+[ext_resource type="Script" uid="uid://b1cwda1tqq6bb" path="res://Common/Abstract/state_machine.gd" id="2_vdqhm"]
+
+[node name="Entity" type="Node2D" unique_id=228107323 node_paths=PackedStringArray("state_machine")]
+script = ExtResource("1_vdqhm")
+state_machine = NodePath("StateMachine")
+
+[node name="StateMachine" type="Node" parent="." unique_id=453758574 node_paths=PackedStringArray("entity")]
+script = ExtResource("2_vdqhm")
+entity = NodePath("..")

@@ -1,0 +1,3 @@
+Intrivus: for the Pixel-Perfect Platformer Jump github gist https://gist.github.com/Intrivus/33d064008bb48cd41795e836d472f316
+KoBeWi: for the MetSys addon
+Bitlytic: for the Finite State Machine Video

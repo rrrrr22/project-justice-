@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://nxhg3s2xo16r"]
+
+[ext_resource type="Script" uid="uid://4wpyghl345jw" path="res://Common/Abstract/collision.gd" id="1_q86vr"]
+
+[node name="Collision" type="CharacterBody2D" unique_id=2092463269]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_q86vr")

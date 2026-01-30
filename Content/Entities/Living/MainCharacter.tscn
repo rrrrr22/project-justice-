@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://djt8rtyr4npak"]
+
+[ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_xeif3"]
+[ext_resource type="Script" uid="uid://ca33cwcfauy5u" path="res://Content/Entities/Living/main_character.gd" id="2_ydgqx"]
+[ext_resource type="PackedScene" uid="uid://nxhg3s2xo16r" path="res://Common/Abstract/Collision.tscn" id="3_4wc7f"]
+[ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="4_ydgqx"]
+[ext_resource type="Texture2D" uid="uid://4qlgtxvu5krv" path="res://Assets/Textures/MC.png" id="5_4wc7f"]
+[ext_resource type="Script" uid="uid://ca0m1b751ntd2" path="res://Content/Entities/Living/mc_state_jumping.gd" id="7_debbp"]
+[ext_resource type="PackedScene" uid="uid://b4frkppndqmlu" path="res://Common/Abstract/State.tscn" id="7_qpbr5"]
+[ext_resource type="Script" uid="uid://bodq1ep1ahhpv" path="res://Content/Entities/Living/mc_state_grounded.gd" id="8_debbp"]
+[ext_resource type="PackedScene" uid="uid://bbtd6g42nymhl" path="res://Common/Abstract/BodyShapeCast.tscn" id="9_2e0vt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydgqx"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpbr5"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e0vt"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cco8"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wrr6"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tu111"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwgdx"]
+atlas = ExtResource("5_4wc7f")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2e0vt"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydgqx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpbr5")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e0vt")
+}],
+"loop": true,
+"name": &"MidAir",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cco8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wrr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tu111")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwgdx")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydgqx"]
+size = Vector2(8, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qpbr5"]
+radius = 4.0
+
+[node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entitySprite", "body") instance=ExtResource("1_xeif3")]
+script = ExtResource("2_ydgqx")
+entitySprite = NodePath("EntitySprite")
+body = NodePath("Collision")
+
+[node name="EntitySprite" parent="." index="0" unique_id=1272832984 instance=ExtResource("4_ydgqx")]
+sprite_frames = SubResource("SpriteFrames_2e0vt")
+animation = &"Walk"
+autoplay = "Idle"
+frame_progress = 0.7682012
+
+[node name="StateMachine" parent="." index="1" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Grounded")
+
+[node name="Jumping" parent="StateMachine" index="0" unique_id=1066932445 instance=ExtResource("7_qpbr5")]
+script = ExtResource("7_debbp")
+
+[node name="Grounded" parent="StateMachine" index="1" unique_id=952328017 instance=ExtResource("7_qpbr5")]
+script = ExtResource("8_debbp")
+
+[node name="Collision" parent="." index="2" unique_id=2092463269 instance=ExtResource("3_4wc7f")]
+collision_layer = 1
+collision_mask = 3
+
+[node name="BodyColShape" type="CollisionShape2D" parent="Collision" index="0" unique_id=869595329]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ydgqx")
+
+[node name="HeadColShape" type="CollisionShape2D" parent="Collision" index="1" unique_id=1400837392]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_qpbr5")
+
+[node name="CeilingCast" parent="Collision" index="2" unique_id=1351738515 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
+position = Vector2(0, -12)
+rotation = 3.1414135
+target_position = Vector2(0, 5)
+entity = NodePath("../..")
+is_for_ceiling = true
+
+[node name="FloorCastLeft" parent="Collision" index="3" unique_id=1568091729 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
+position = Vector2(-4, 16)
+target_position = Vector2(0, 5)
+entity = NodePath("../..")
+
+[node name="FloorCastRight" parent="Collision" index="4" unique_id=1952425458 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
+position = Vector2(4, 16)
+target_position = Vector2(0, 5)
+entity = NodePath("../..")

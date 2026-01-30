@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://buh4ro6cb2fh6"]
+
+[sub_resource type="GDScript" id="GDScript_xq476"]
+script/source = "extends Node
+
+func _process(delta: float) -> void:
+	
+	pass
+"
+
+[node name="InputManager" type="Node" unique_id=906678274]
+script = SubResource("GDScript_xq476")
