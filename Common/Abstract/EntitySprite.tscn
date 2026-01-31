@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://wcq0ucwl4on2"]
 
 [ext_resource type="SpriteFrames" uid="uid://cllttr6a0bb4e" path="res://Common/BaseResources/EntityAnimations.tres" id="1_m6hr0"]
+[ext_resource type="Script" uid="uid://s3p5osq8lryk" path="res://Common/Abstract/entity_sprite.gd" id="2_51428"]
 
 [node name="EntitySprite" type="AnimatedSprite2D" unique_id=1272832984]
 sprite_frames = ExtResource("1_m6hr0")
 animation = &"Idle"
+script = ExtResource("2_51428")

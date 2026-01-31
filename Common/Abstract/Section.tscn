@@ -9,11 +9,11 @@ script = ExtResource("1_ic3mr")
 camera = NodePath("JusticeCamera")
 sectionMainTiles = NodePath("JusticeTiles")
 
+[node name="RoomInstance" parent="." unique_id=997189293 instance=ExtResource("2_mjw8q")]
+
 [node name="JusticeTiles" type="TileMapLayer" parent="." unique_id=120860292]
 tile_set = ExtResource("3_mjw8q")
 
 [node name="JusticeCamera" type="Camera2D" parent="." unique_id=1262278654]
 position_smoothing_enabled = true
 position_smoothing_speed = 1.5
-
-[node name="RoomInstance" parent="." unique_id=997189293 instance=ExtResource("2_mjw8q")]

@@ -1,12 +1,9 @@
-class_name JusticeUtils
+class_name Utils
 
-# runs animation without restarting it
-static func run_animation(animatedSprite : AnimatedSprite2D, animation : StringName):
-	if animatedSprite.animation == animation:
-		return
-	animatedSprite.play(animation)
+static func new_scene(id : String) -> Node:
+	return SceneRegister.game_register[id].scene.instantiate()
 
-static func move_towards(value: float, towards: float, amount: float):
-	value += amount
-	if value > towards:
-		value = towards
+static func new_entity(id: String, owner: Entity = null) -> Entity:
+	var entity =  SceneRegister.game_register[id].scene.instantiate() as Entity
+	entity.entity_owner = owner
+	return entity

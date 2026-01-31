@@ -4,6 +4,8 @@ var states : Dictionary[String,State] = {}
 @export
 var starting_state : State
 @export
+var on_killed_state : State
+@export
 var entity : Entity
 func _ready() -> void:
 	for c in get_children():
@@ -21,6 +23,14 @@ func update() -> void:
 		current.jump_vars_update(entity)
 		current.on_update(entity)
 	pass
+func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
+	current.on_damage_taken(entity, hurtBox)
+	if entity.entity_stats.current_hp <= 0:
+		change_to_dead_state()
+
+func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):
+	current.on_damage_dealt(entity, hurtBox)
+
 func on_changed(state : State, next_state_name : String) -> void:
 	if state != current:
 		return
@@ -35,4 +45,9 @@ func on_changed(state : State, next_state_name : String) -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if current:
 		current.on_key_pressed(entity,event)
-	
+
+func change_to_dead_state():
+	if !on_killed_state:
+		return
+	on_killed_state.on_entered(entity,current.name.to_lower())
+	current = on_killed_state

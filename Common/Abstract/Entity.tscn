@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://hrm65h0jmlel" path="res://Common/Abstract/entity.gd" id="1_vdqhm"]
 [ext_resource type="Script" uid="uid://b1cwda1tqq6bb" path="res://Common/Abstract/state_machine.gd" id="2_vdqhm"]
+[ext_resource type="Script" uid="uid://xopoudp3pdc" path="res://Common/Abstract/entities_pool.gd" id="3_5x485"]
 
-[node name="Entity" type="Node2D" unique_id=228107323 node_paths=PackedStringArray("state_machine")]
+[node name="Entity" type="Node2D" unique_id=228107323 node_paths=PackedStringArray("state_machine", "entities_pool")]
 script = ExtResource("1_vdqhm")
 state_machine = NodePath("StateMachine")
+entities_pool = NodePath("EntitiesPool")
 
 [node name="StateMachine" type="Node" parent="." unique_id=453758574 node_paths=PackedStringArray("entity")]
 script = ExtResource("2_vdqhm")
 entity = NodePath("..")
+
+[node name="EntitiesPool" type="Node" parent="." unique_id=755787916]
+script = ExtResource("3_5x485")

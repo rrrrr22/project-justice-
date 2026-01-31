@@ -38,6 +38,10 @@ func on_update(entity: Entity) -> void:
 func on_exit(entity: Entity, next: String) -> void:
 	pass
 
+func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
+	pass
+func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):
+	pass
 func on_key_pressed(entity: Entity, event: InputEvent):
 	pass
 
