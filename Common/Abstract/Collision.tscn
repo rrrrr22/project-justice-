@@ -5,4 +5,5 @@
 [node name="Collision" type="CharacterBody2D" unique_id=2092463269]
 collision_layer = 0
 collision_mask = 2
+motion_mode = 1
 script = ExtResource("1_q86vr")

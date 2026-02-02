@@ -16,6 +16,11 @@ func _physics_process(delta: float) -> void:
 		camera.position.x -= 32
 	else:
 		camera.position.x += 32
+		
+	if JusticeGlobal.main_character.current_aim_state == JusticeGlobal.aim_state.UP:
+		camera.position.y -= 32
+	if JusticeGlobal.main_character.current_aim_state == JusticeGlobal.aim_state.DOWN:
+		camera.position.y += 32
 	
 	MetSys.get_current_room_instance().adjust_camera_limits(camera)
 	section_update()

@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://nxhg3s2xo16r" path="res://Common/Abstract/Collision.tscn" id="3_4wc7f"]
 [ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="4_ydgqx"]
 [ext_resource type="Texture2D" uid="uid://4qlgtxvu5krv" path="res://Assets/Textures/MC.png" id="5_4wc7f"]
+[ext_resource type="AudioStream" uid="uid://baymsb183biik" path="res://Assets/Sounds/MCJump.wav" id="7_2wrr6"]
 [ext_resource type="Script" uid="uid://ca0m1b751ntd2" path="res://Content/Entities/Living/mc_state_jumping.gd" id="7_debbp"]
 [ext_resource type="PackedScene" uid="uid://b4frkppndqmlu" path="res://Common/Abstract/State.tscn" id="7_qpbr5"]
 [ext_resource type="Script" uid="uid://bodq1ep1ahhpv" path="res://Content/Entities/Living/mc_state_grounded.gd" id="8_debbp"]
+[ext_resource type="AudioStream" uid="uid://c7ey1cp2lvh8q" path="res://Assets/Sounds/JumpHit.wav" id="8_tu111"]
 [ext_resource type="PackedScene" uid="uid://bbtd6g42nymhl" path="res://Common/Abstract/BodyShapeCast.tscn" id="9_2e0vt"]
 [ext_resource type="PackedScene" uid="uid://co833tm5266mw" path="res://Common/Abstract/EntityHitBox.tscn" id="10_7cco8"]
 
@@ -83,7 +85,7 @@ region = Rect2(64, 256, 32, 32)
 atlas = ExtResource("5_4wc7f")
 region = Rect2(96, 256, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7cco8"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tu111"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -201,7 +203,7 @@ entitySprite = NodePath("EntitySprite")
 body = NodePath("Collision")
 
 [node name="EntitySprite" parent="." index="0" unique_id=1272832984 instance=ExtResource("4_ydgqx")]
-sprite_frames = SubResource("SpriteFrames_7cco8")
+sprite_frames = SubResource("SpriteFrames_tu111")
 animation = &"Walk2"
 autoplay = "Idle0"
 
@@ -210,13 +212,20 @@ starting_state = NodePath("Grounded")
 
 [node name="Jumping" parent="StateMachine" index="0" unique_id=1066932445 instance=ExtResource("7_qpbr5")]
 script = ExtResource("7_debbp")
+jump_height = 64.0
+time_to_peak = 32.0
+time_to_floor = 24.0
+jump_sound = ExtResource("7_2wrr6")
+jump_hit_sound = ExtResource("8_tu111")
 
 [node name="Grounded" parent="StateMachine" index="1" unique_id=952328017 instance=ExtResource("7_qpbr5")]
 script = ExtResource("8_debbp")
 
-[node name="Collision" parent="." index="2" unique_id=2092463269 instance=ExtResource("3_4wc7f")]
+[node name="Collision" parent="." index="2" unique_id=2092463269 node_paths=PackedStringArray("entity", "collision_detection_raycasts") instance=ExtResource("3_4wc7f")]
 collision_layer = 1
 collision_mask = 3
+entity = NodePath("..")
+collision_detection_raycasts = [NodePath("CeilingCast"), NodePath("FloorCastLeft"), NodePath("FloorCastRight")]
 
 [node name="BodyColShape" type="CollisionShape2D" parent="Collision" index="0" unique_id=869595329]
 position = Vector2(0, 4)
@@ -226,22 +235,22 @@ shape = SubResource("RectangleShape2D_ydgqx")
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_qpbr5")
 
-[node name="CeilingCast" parent="Collision" index="2" unique_id=1351738515 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
+[node name="CeilingCast" parent="Collision" index="2" unique_id=1351738515 instance=ExtResource("9_2e0vt")]
 position = Vector2(0, -12)
 rotation = 3.1414135
+exclude_parent = false
 target_position = Vector2(0, 5)
-entity = NodePath("../..")
 is_for_ceiling = true
 
-[node name="FloorCastLeft" parent="Collision" index="3" unique_id=1568091729 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
-position = Vector2(-4, 16)
-target_position = Vector2(0, 5)
-entity = NodePath("../..")
+[node name="FloorCastLeft" parent="Collision" index="3" unique_id=1568091729 instance=ExtResource("9_2e0vt")]
+position = Vector2(-4, 12)
+exclude_parent = false
+target_position = Vector2(0, 4.6)
 
-[node name="FloorCastRight" parent="Collision" index="4" unique_id=1952425458 node_paths=PackedStringArray("entity") instance=ExtResource("9_2e0vt")]
-position = Vector2(4, 16)
-target_position = Vector2(0, 5)
-entity = NodePath("../..")
+[node name="FloorCastRight" parent="Collision" index="4" unique_id=1952425458 instance=ExtResource("9_2e0vt")]
+position = Vector2(4, 12)
+exclude_parent = false
+target_position = Vector2(0, 4.6)
 
 [node name="EntityHitBox" parent="." index="3" unique_id=1759118316 node_paths=PackedStringArray("entity") instance=ExtResource("10_7cco8")]
 entity = NodePath("..")

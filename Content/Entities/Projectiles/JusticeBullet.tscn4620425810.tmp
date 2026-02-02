@@ -49,8 +49,6 @@ radius = 8.0
 entitySprite = NodePath("EntitySprite")
 on_spawn_sound = ExtResource("2_0gkxf")
 on_kill_sound = ExtResource("3_bkayu")
-pitch_difference_spawn = 0.3
-pitch_spawn = 3.0
 
 [node name="StateMachine" parent="." index="0" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Projectile")

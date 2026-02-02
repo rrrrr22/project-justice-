@@ -12,6 +12,10 @@ var jump_height : float = 128
 var time_to_peak : float = 60
 @export
 var time_to_floor : float = 45
+@export
+var jump_sound : AudioStream
+@export
+var jump_hit_sound : AudioStream
 
 var cant_jump : bool = false
 var is_jumping : bool = false
@@ -71,7 +75,8 @@ func jump(entity: Entity):
 	is_jumping = true
 	just_jumped = true
 	on_jumping(entity)
-
+	Utils.emit_sound(jump_sound,entity.audio_player_2d,1.,0.4)
+	
 func gravity(entity: Entity, to_falling : bool = false):
 	is_falling = (!entity.is_grounded && jump_new_velocity.y >= 0) || to_falling 
 	return fall_gravity if is_falling else peak_gravity

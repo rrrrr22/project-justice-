@@ -11,11 +11,24 @@ var body : JusticeColBody
 @export
 var state_machine : StateMachine
 @export
-var collision_cast : RayCast2D
-@export
 var entity_stats : EntityStats
 @export 
 var entities_pool : EntitiesPool
+
+@export
+var audio_player_2d: AudioStreamPlayer2D
+@export
+var on_spawn_sound: AudioStream
+@export 
+var on_kill_sound: AudioStream
+@export 
+var pitch_difference_spawn : float
+@export 
+var pitch_difference_kill : float
+@export 
+var pitch_spawn : float
+@export 
+var pitch_kill : float
 
 var is_grounded : bool = false
 var is_hitting_ceiling : bool = false
@@ -25,7 +38,7 @@ var current_aim_state : JusticeGlobal.aim_state = JusticeGlobal.aim_state.STRAIG
 func _ready() -> void:
 	if body:
 		body.global_position = position
-
+	Utils.emit_sound(on_spawn_sound,audio_player_2d,pitch_spawn,pitch_difference_spawn)
 	on_ready()
 	
 func on_ready() -> void:
