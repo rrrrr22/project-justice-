@@ -16,6 +16,8 @@ enum aim_state
 }
 
 func mc_fire_weapon(entity: Entity):
+	if JusticeGlobal.mc_weapon_cooldown > 0:
+		return
 	JusticeGlobal.mc_weapon_cooldown = 9
 	var projectile = Utils.new_entity("justice_bullet", entity)
 	projectile.position = entity.position

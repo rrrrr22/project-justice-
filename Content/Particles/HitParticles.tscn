@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://drb6ukeqd068n"]
+
+[ext_resource type="PackedScene" uid="uid://c4ip81876jiuj" path="res://Common/Abstract/JusticeParticles.tscn" id="1_0mjia"]
+[ext_resource type="Texture2D" uid="uid://drjdgcmsw8j0j" path="res://Assets/Textures/ParticlePlasma.png" id="2_is7iw"]
+
+[sub_resource type="Curve" id="Curve_14fey"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.084690556, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="JusticeParticles" unique_id=285260557 instance=ExtResource("1_0mjia")]
+texture = ExtResource("2_is7iw")
+lifetime = 0.42
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+fract_delta = false
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 19.48
+initial_velocity_max = 19.48
+scale_amount_curve = SubResource("Curve_14fey")

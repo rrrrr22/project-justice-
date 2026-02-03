@@ -87,6 +87,7 @@ WeaponSwitchLeft={
 
 2d_physics/layer_1="CollideWithEntitiesLayer"
 2d_physics/layer_2="CollideWithTilesLayer"
+2d_physics/layer_3="CollideWithPlatformsLayer"
 
 [physics]
 

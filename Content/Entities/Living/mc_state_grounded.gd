@@ -8,6 +8,7 @@ func on_entered(entity: Entity, prev: String) -> void:
 	if !Input.is_action_pressed("A") && !Input.is_action_pressed("D"):
 		entity.velocity.x = 0
 	entity.velocity.y = 0
+	entity.is_falling_through_platform = true
 
 func on_update(entity: Entity) -> void:
 	if !entity.is_grounded:
@@ -28,7 +29,7 @@ func on_update(entity: Entity) -> void:
 		stopped_moving = false
 	if entity.velocity.x == 0:
 		entity.entitySprite.play(&"Idle" + str(entity.current_aim_state))
-	
+	entity.body.set_collision_mask_value(3,true)
 	if Input.is_action_pressed("S"):
 		entity.current_aim_state = JusticeGlobal.aim_state.DOWN
 	else: if Input.is_action_pressed("W"):
@@ -36,7 +37,7 @@ func on_update(entity: Entity) -> void:
 	else:
 		entity.current_aim_state = JusticeGlobal.aim_state.STRAIGHT
 		
-	if JusticeGlobal.mc_weapon_cooldown <= 0 && Input.is_action_pressed("Shoot"):
+	if Input.is_action_pressed("Shoot"):
 		JusticeGlobal.mc_fire_weapon(entity)
 	
 func on_key_pressed(entity: Entity, event: InputEvent):

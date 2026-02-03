@@ -1,7 +1,4 @@
-class_name EntityHurtbox extends Area2D
-
-@export
-var entity : Entity
+class_name EntityHurtbox extends EntityIsAreaActive
 
 @export
 var damage_amount : int = 1
@@ -14,6 +11,9 @@ var isPlayerSided : bool = false
 
 var exclude : Array[EntityHitbox] = []
 
+func run():
+	scan()
+	
 func scan() -> void:
 	for node in get_overlapping_bodies():
 		if node is EntityHitbox:

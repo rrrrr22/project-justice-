@@ -26,6 +26,7 @@ func update() -> void:
 func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
 	current.on_damage_taken(entity, hurtBox)
 	if entity.entity_stats.current_hp <= 0:
+		entity.kill()
 		change_to_dead_state()
 
 func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):

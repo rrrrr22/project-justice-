@@ -4,6 +4,13 @@ var entity_owner = null
 var old_velocity : Vector2 = Vector2.ZERO
 var old_position : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
+var is_falling_through_platform : bool = false
+var is_below_platform : bool = false
+var is_active : bool = false
+@export
+var sprite_visible_on_kill : bool
+@export
+var scenes_on_kill : Array[PackedScene]
 @export 
 var entitySprite : AnimatedSprite2D
 @export 
@@ -14,7 +21,6 @@ var state_machine : StateMachine
 var entity_stats : EntityStats
 @export 
 var entities_pool : EntitiesPool
-
 @export
 var audio_player_2d: AudioStreamPlayer2D
 @export
@@ -30,7 +36,7 @@ var pitch_spawn : float
 @export 
 var pitch_kill : float
 
-var is_grounded : bool = false
+var is_grounded : bool = true
 var is_hitting_ceiling : bool = false
 var current_aim_state : JusticeGlobal.aim_state = JusticeGlobal.aim_state.STRAIGHT
 
@@ -75,7 +81,12 @@ func on_killing_an_entity(entity: Entity, hurtBox: EntityHurtbox):
 	pass
 	
 func kill():
-	queue_free()
+	is_active = false
+	for packed in scenes_on_kill:
+		var scene = packed.instantiate()
+		if scene is Node2D:
+			scene.global_position = global_position
+		get_tree().current_scene.add_child(scene)
 	on_kill()
 	
 func on_kill():

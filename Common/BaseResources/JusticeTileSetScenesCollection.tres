@@ -1,0 +1,10 @@
+[gd_resource type="TileSet" format=3 uid="uid://dnfyaxtbpujc2"]
+
+[ext_resource type="PackedScene" uid="uid://pdp0gpphih7j" path="res://Common/EngineScenes/Platform.tscn" id="1_uiyca"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ay7mt"]
+resource_name = "EngineCollection"
+scenes/1/scene = ExtResource("1_uiyca")
+
+[resource]
+sources/0 = SubResource("TileSetScenesCollectionSource_ay7mt")

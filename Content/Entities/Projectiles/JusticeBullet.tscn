@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_ja7ji"]
 [ext_resource type="AudioStream" uid="uid://vcipj08svrxw" path="res://Assets/Sounds/Shot0.ogg" id="2_0gkxf"]
+[ext_resource type="PackedScene" uid="uid://drb6ukeqd068n" path="res://Content/Particles/HitParticles.tscn" id="2_bkayu"]
 [ext_resource type="PackedScene" uid="uid://b4frkppndqmlu" path="res://Common/Abstract/State.tscn" id="2_df8sa"]
 [ext_resource type="AudioStream" uid="uid://cp8p1bwod370q" path="res://Assets/Sounds/HittingTile.ogg" id="3_bkayu"]
 [ext_resource type="Script" uid="uid://ci887rvpo6qpc" path="res://Content/Entities/Projectiles/projectile.gd" id="3_umbym"]
@@ -46,6 +47,8 @@ animations = [{
 radius = 8.0
 
 [node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entitySprite") instance=ExtResource("1_ja7ji")]
+sprite_visible_on_kill = true
+scenes_on_kill = Array[PackedScene]([ExtResource("2_bkayu")])
 entitySprite = NodePath("EntitySprite")
 on_spawn_sound = ExtResource("2_0gkxf")
 on_kill_sound = ExtResource("3_bkayu")
@@ -67,8 +70,8 @@ rotate_towards_velocity = true
 
 [node name="HurtfulArea" parent="." index="2" unique_id=2031989949 node_paths=PackedStringArray("entity") instance=ExtResource("6_jg2o5")]
 collision_layer = 0
-entity = NodePath("..")
 isPlayerSided = true
+entity = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtfulArea" index="0" unique_id=1972580682]
 shape = SubResource("CircleShape2D_g70xn")

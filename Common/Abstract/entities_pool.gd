@@ -5,5 +5,6 @@ func clear():
 		var entity = child as Entity
 		entity.kill()
 		
-func add_entity(entity: Entity):
-	add_child(entity)
+func add_entity(entity: Node):
+	if entity is Entity:
+		add_child(entity)

@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://clkmg64r7061v"]
 
 [ext_resource type="Texture2D" uid="uid://m8l15ipsi8sw" path="res://Assets/Textures/AshenCity_TileSet.png" id="1_ob065"]
+[ext_resource type="PackedScene" uid="uid://pdp0gpphih7j" path="res://Common/EngineScenes/Platform.tscn" id="2_rrmyk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rrmyk"]
 texture = ExtResource("1_ob065")
@@ -201,12 +202,22 @@ texture = ExtResource("1_ob065")
 10:16/0 = 0
 12:16/0 = 0
 14:16/0 = 0
+7:1/0 = 0
+7:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+7:1/0/physics_layer_1/polygon_0/one_way = true
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ob065"]
+resource_name = "EnigneCollection"
+scenes/1/scene = ExtResource("2_rrmyk")
 
 [resource]
 resource_local_to_scene = true
 physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 4
+physics_layer_1/collision_mask = 0
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "JusticeTerrain 0"
 terrain_set_0/terrain_0/color = Color(0.5341038, 0.57324624, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_rrmyk")
+sources/1 = SubResource("TileSetScenesCollectionSource_ob065")

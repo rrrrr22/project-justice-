@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c6m78efys5e28" path="res://Common/Abstract/justice_particles.gd" id="1_n8c8i"]
 
 [node name="JusticeParticles" type="CPUParticles2D" unique_id=285260557]
+emitting = false
+one_shot = true
 script = ExtResource("1_n8c8i")
 
 [connection signal="finished" from="." to="." method="_on_finished"]
