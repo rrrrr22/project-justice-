@@ -1,9 +1,8 @@
 class_name EntityIsAreaActive extends Area2D
 @export
 var entity : Entity
-func check():
+func _physics_process(delta: float) -> void:
 	if entity.is_active:
 		run()
-	pass
 func run():
 	pass

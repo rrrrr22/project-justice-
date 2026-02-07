@@ -6,13 +6,16 @@ var old_position : Vector2 = Vector2.ZERO
 var velocity : Vector2 = Vector2.ZERO
 var is_falling_through_platform : bool = false
 var is_below_platform : bool = false
-var is_active : bool = false
+var is_hitting_wall : bool = false
+var is_active : bool = true
+@export
+var remove_child_on_kill : Node
 @export
 var sprite_visible_on_kill : bool
 @export
 var scenes_on_kill : Array[PackedScene]
 @export 
-var entitySprite : AnimatedSprite2D
+var entity_sprite : AnimatedSprite2D
 @export 
 var body : JusticeColBody
 @export
@@ -35,8 +38,10 @@ var pitch_difference_kill : float
 var pitch_spawn : float
 @export 
 var pitch_kill : float
+@export var queue_free_on_kill : bool = false
 
 var is_grounded : bool = true
+var just_landed : bool = false
 var is_hitting_ceiling : bool = false
 var current_aim_state : JusticeGlobal.aim_state = JusticeGlobal.aim_state.STRAIGHT
 
@@ -53,6 +58,7 @@ func on_ready() -> void:
 func _physics_process(delta: float) -> void:
 	old_velocity = velocity
 	old_position = position
+
 	pre_update()
 	if state_machine:
 		state_machine.update()
@@ -81,13 +87,31 @@ func on_killing_an_entity(entity: Entity, hurtBox: EntityHurtbox):
 	pass
 	
 func kill():
+	if !is_active:
+		return
 	is_active = false
 	for packed in scenes_on_kill:
 		var scene = packed.instantiate()
 		if scene is Node2D:
-			scene.global_position = global_position
+			scene.position = position
 		get_tree().current_scene.add_child(scene)
+	if sprite_visible_on_kill:
+		entity_sprite.visible = true
+	else:
+		entity_sprite.visible = false
+	remove_child(remove_child_on_kill)
+	if queue_free_on_kill:
+		queue_free()
+	if audio_player_2d.playing:
+		audio_player_2d.reparent(get_parent())
 	on_kill()
 	
 func on_kill():
+	pass
+
+func revive():
+	add_child(remove_child_on_kill)
+	is_active = true
+	
+func on_revive():
 	pass

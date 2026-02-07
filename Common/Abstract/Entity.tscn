@@ -3,12 +3,19 @@
 [ext_resource type="Script" uid="uid://hrm65h0jmlel" path="res://Common/Abstract/entity.gd" id="1_vdqhm"]
 [ext_resource type="Script" uid="uid://b1cwda1tqq6bb" path="res://Common/Abstract/state_machine.gd" id="2_vdqhm"]
 [ext_resource type="Script" uid="uid://xopoudp3pdc" path="res://Common/Abstract/entities_pool.gd" id="3_5x485"]
+[ext_resource type="Script" uid="uid://fy44pkpomo7g" path="res://Common/Abstract/EntitySounds.gd" id="4_7ja43"]
 
-[node name="Entity" type="Node2D" unique_id=228107323 node_paths=PackedStringArray("state_machine", "entities_pool", "audio_player_2d")]
+[node name="Entity" type="Node2D" unique_id=228107323 node_paths=PackedStringArray("remove_child_on_kill", "state_machine", "entities_pool", "audio_player_2d")]
 script = ExtResource("1_vdqhm")
+remove_child_on_kill = NodePath("OnKillQueueFreeChildren")
 state_machine = NodePath("StateMachine")
 entities_pool = NodePath("EntitiesPool")
 audio_player_2d = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1702584557 node_paths=PackedStringArray("entity")]
+max_polyphony = 32
+script = ExtResource("4_7ja43")
+entity = NodePath("..")
 
 [node name="StateMachine" type="Node" parent="." unique_id=453758574 node_paths=PackedStringArray("entity")]
 script = ExtResource("2_vdqhm")
@@ -17,5 +24,4 @@ entity = NodePath("..")
 [node name="EntitiesPool" type="Node" parent="." unique_id=755787916]
 script = ExtResource("3_5x485")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1702584557]
-max_polyphony = 32
+[node name="OnKillQueueFreeChildren" type="Node" parent="." unique_id=1701765837]

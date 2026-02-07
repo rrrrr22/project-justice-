@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cbpaedys21hxd"]
+
+[ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_a3bo7"]
+[ext_resource type="Script" uid="uid://usp14nfhkfyh" path="res://Common/Systems/entity_stats.gd" id="2_5yrp8"]
+[ext_resource type="PackedScene" uid="uid://co833tm5266mw" path="res://Common/Abstract/EntityHitBox.tscn" id="2_wan14"]
+[ext_resource type="PackedScene" uid="uid://dmyde8q5r3jsh" path="res://Common/Abstract/HurtfulArea.tscn" id="3_5yrp8"]
+[ext_resource type="PackedScene" uid="uid://nxhg3s2xo16r" path="res://Common/Abstract/Collision.tscn" id="4_670qe"]
+[ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="6_670qe"]
+
+[sub_resource type="Resource" id="Resource_670qe"]
+script = ExtResource("2_5yrp8")
+metadata/_custom_type_script = "uid://usp14nfhkfyh"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_670qe"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"MidAir",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entity_sprite", "body") instance=ExtResource("1_a3bo7")]
+entity_sprite = NodePath("EntitySprite")
+body = NodePath("Collision")
+entity_stats = SubResource("Resource_670qe")
+
+[node name="Collision" parent="." index="1" unique_id=2092463269 node_paths=PackedStringArray("entity") instance=ExtResource("4_670qe")]
+collision_layer = 1
+entity = NodePath("..")
+
+[node name="EntityHitBox" parent="." index="5" unique_id=1759118316 node_paths=PackedStringArray("entity") instance=ExtResource("2_wan14")]
+collision_mask = 0
+entity = NodePath("..")
+
+[node name="HurtfulArea" parent="." index="6" unique_id=2031989949 node_paths=PackedStringArray("entity") instance=ExtResource("3_5yrp8")]
+collision_layer = 0
+hitbox_penetration = -1
+entity = NodePath("..")
+
+[node name="EntitySprite" parent="." index="7" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("6_670qe")]
+sprite_frames = SubResource("SpriteFrames_670qe")
+animation = &"Dead"
+entity = NodePath("..")

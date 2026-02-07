@@ -15,7 +15,7 @@ func run():
 	scan()
 	
 func scan() -> void:
-	for node in get_overlapping_bodies():
+	for node in get_overlapping_areas():
 		if node is EntityHitbox:
 			if !exclude.has(node) && isPlayerSided != node.isPlayerSided:
 				exclude.append(node)
@@ -26,4 +26,6 @@ func on_hit(hitbox : EntityHitbox):
 		hitbox_penetration -= 1
 	if hitbox_penetration == 0:
 		entity.kill()
-	
+func on_tile_hit(body: Node2D):
+	if !(body is JusticeColBody):
+		entity.kill()

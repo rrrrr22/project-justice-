@@ -5,10 +5,49 @@
 [ext_resource type="TileSet" uid="uid://clkmg64r7061v" path="res://Common/BaseResources/JusticeTileSet.tres" id="3_mjw8q"]
 [ext_resource type="TileSet" uid="uid://dnfyaxtbpujc2" path="res://Common/BaseResources/JusticeTileSetScenesCollection.tres" id="4_xa76w"]
 
-[node name="Section" type="Node2D" unique_id=1453167351 node_paths=PackedStringArray("camera", "sectionMainTiles")]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xa76w"]
+
+[sub_resource type="Sky" id="Sky_krj0e"]
+sky_material = SubResource("ProceduralSkyMaterial_xa76w")
+
+[sub_resource type="Environment" id="Environment_xa76w"]
+background_mode = 2
+sky = SubResource("Sky_krj0e")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+
+[node name="Section" type="Node2D" unique_id=1453167351 node_paths=PackedStringArray("camera", "camera_3D", "sectionMainTiles")]
 script = ExtResource("1_ic3mr")
 camera = NodePath("JusticeCamera")
+camera_3D = NodePath("CanvasLayer/SubViewportContainer/SubViewport/Camera3D")
 sectionMainTiles = NodePath("JusticeTiles")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1360780983]
+layer = -1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=172931684]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=1429065292]
+handle_input_locally = false
+size = Vector2i(512, 384)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1032496574]
+environment = SubResource("Environment_xa76w")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=1173099381]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=249242166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.8)
 
 [node name="RoomInstance" parent="." unique_id=997189293 instance=ExtResource("2_mjw8q")]
 

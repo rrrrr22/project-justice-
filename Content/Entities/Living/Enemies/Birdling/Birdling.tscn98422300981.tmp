@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bpep23je5apc8"]
+
+[ext_resource type="PackedScene" uid="uid://cbpaedys21hxd" path="res://Content/Entities/Living/Enemies/EnemyBase.tscn" id="1_21qkm"]
+[ext_resource type="Script" uid="uid://cycbrmqc62ati" path="res://Content/Entities/Living/Enemies/enemy_idle.gd" id="2_1khqm"]
+[ext_resource type="Texture2D" uid="uid://rgmiqiocw02k" path="res://Assets/Textures/Enemies/Birdling/Birdling_dead.png" id="2_f8y1i"]
+[ext_resource type="Texture2D" uid="uid://b67m2ovo6fc0" path="res://Assets/Textures/Enemies/Birdling/Birdling_idle.png" id="3_tkkjk"]
+[ext_resource type="Script" uid="uid://c5dyiiaun121d" path="res://Content/Entities/Living/Enemies/enemy_follow.gd" id="3_xtja6"]
+[ext_resource type="Texture2D" uid="uid://v61c85c1gwk3" path="res://Assets/Textures/Enemies/Birdling/Birdling_walk.png" id="4_r14xy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27f5k"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8y1i"]
+size = Vector2(32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m74bk"]
+atlas = ExtResource("2_f8y1i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7wr6"]
+atlas = ExtResource("3_tkkjk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2yil"]
+atlas = ExtResource("3_tkkjk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1anyf"]
+atlas = ExtResource("4_r14xy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f835a"]
+atlas = ExtResource("4_r14xy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8dlc"]
+atlas = ExtResource("4_r14xy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huq1p"]
+atlas = ExtResource("4_r14xy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtja6"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m74bk")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7wr6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2yil")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1anyf")
+}],
+"loop": true,
+"name": &"MidAir",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f835a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8dlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huq1p")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Entity" unique_id=228107323 instance=ExtResource("1_21qkm")]
+
+[node name="AudioStreamPlayer2D" parent="." index="0" unique_id=1702584557]
+script = null
+
+[node name="Collision" parent="." index="1" unique_id=2092463269 node_paths=PackedStringArray("rays_position")]
+collision_layer = 0
+rays_position = [NodePath("Marker2D"), NodePath("Marker2D2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0" unique_id=666906036]
+shape = SubResource("RectangleShape2D_27f5k")
+
+[node name="Marker2D" type="Marker2D" parent="Collision" index="1" unique_id=1497076750]
+position = Vector2(-8, 16)
+
+[node name="Marker2D2" type="Marker2D" parent="Collision" index="2" unique_id=1963519876]
+position = Vector2(8, 16)
+
+[node name="StateMachine" parent="." index="2" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1683181905]
+script = ExtResource("2_1khqm")
+on_alert_state = "Follow"
+alert_distance = 64.0
+
+[node name="Follow" type="Node" parent="StateMachine" index="1" unique_id=1197363758]
+script = ExtResource("3_xtja6")
+on_lost_player_state = "Idle"
+jump_height = 64.0
+time_to_peak = 32.0
+time_to_floor = 24.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityHitBox" parent_id_path=PackedInt32Array(1759118316) index="0" unique_id=262438264]
+shape = SubResource("RectangleShape2D_f8y1i")
+
+[node name="EntitySprite" parent="." index="7" unique_id=1272832984]
+sprite_frames = SubResource("SpriteFrames_xtja6")
+animation = &"Walk"
+autoplay = "Idle"
+frame_progress = 0.780022

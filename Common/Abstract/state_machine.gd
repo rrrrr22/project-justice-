@@ -23,14 +23,19 @@ func update() -> void:
 		current.jump_vars_update(entity)
 		current.on_update(entity)
 	pass
-func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
-	current.on_damage_taken(entity, hurtBox)
-	if entity.entity_stats.current_hp <= 0:
-		entity.kill()
-		change_to_dead_state()
+func on_damage_taken(attacker : Entity, hurtBox: EntityHurtbox):
+	if current:
+		current.on_damage_taken(entity,attacker, hurtBox)
+		if entity.entity_stats.current_hp <= 0:
+			entity.kill()
+			for s in get_children():
+				if s is State:
+					s.reset_state_vars()
+			change_to_dead_state()
 
 func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):
-	current.on_damage_dealt(entity, hurtBox)
+	if current:
+		current.on_damage_dealt(entity, hurtBox)
 
 func on_changed(state : State, next_state_name : String) -> void:
 	if state != current:

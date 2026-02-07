@@ -23,17 +23,17 @@ func mc_fire_weapon(entity: Entity):
 	projectile.position = entity.position
 	match(entity.current_aim_state):
 		JusticeGlobal.aim_state.STRAIGHT: 
-			projectile.position.x += -5 if entity.entitySprite.flip_h else 5
-			projectile.velocity.x = 8 * (-1 if entity.entitySprite.flip_h else 1) 
+			projectile.position.x += -5 if entity.entity_sprite.flip_h else 5
+			projectile.velocity.x = 8 * (-1 if entity.entity_sprite.flip_h else 1) 
 		JusticeGlobal.aim_state.UP:
 			projectile.position.y += -5
-			projectile.position.x += -5 if entity.entitySprite.flip_h else 5
+			projectile.position.x += -5 if entity.entity_sprite.flip_h else 5
 			projectile.velocity.y = -8
 		JusticeGlobal.aim_state.DOWN:
 			projectile.position.y += 5
-			projectile.position.x += -5 if entity.entitySprite.flip_h else 5
+			projectile.position.x += -5 if entity.entity_sprite.flip_h else 5
 			projectile.velocity.y = 8
-	projectile.entitySprite.rotation = projectile.velocity.angle()
+	projectile.entity_sprite.rotation = projectile.velocity.angle()
 	entity.entities_pool.add_entity(projectile)
 
 func _ready() -> void:
