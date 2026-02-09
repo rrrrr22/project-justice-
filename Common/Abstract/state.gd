@@ -5,7 +5,8 @@ const mc_jump_height : float = 73.6
 var jump_old_velocity : Vector2 = Vector2.ZERO
 var jump_new_velocity : Vector2 = Vector2.ZERO
 var jump_applied_velocity : Vector2 = Vector2.ZERO
-
+var grounded_state_reset_delay : int = 0
+var just_entered_midair : bool = false
 var just_jumped : bool = false
 
 @export
@@ -40,9 +41,14 @@ var player : Entity:
 signal change(state: State, next_state_name: String)
 
 func apply_gravity(entity: Entity):
-	if !entity.is_grounded:
+	if !entity.is_grounded || jump_new_velocity.y < 0:
+		if !just_entered_midair && !entity.is_grounded_last_frame:
+			just_entered_midair = true
+		else:
+			just_entered_midair = false
 		entity.velocity = jump_update(entity)
 	else:
+		jump_new_velocity = Vector2.ZERO
 		entity.velocity.y = 0
 		
 #please override this for reviving lol xdd
@@ -77,8 +83,8 @@ func jump_vars_update(entity: Entity):
 	else: if entity.is_grounded && (is_jumping || is_falling):
 		cant_jump = false
 		is_jumping = false
+		is_falling = false
 		on_landing(entity)
-		Utils.emit_sound(entity.state_machine.current.jump_hit_sound,entity.audio_player_2d,1.,0.4)
 func jump_update(entity: Entity, cancel_peaking : bool = false) -> Vector2:
 	if !entity.body:
 		return Vector2.ZERO
@@ -96,7 +102,6 @@ func jump(entity: Entity):
 	is_jumping = true
 	just_jumped = true
 	on_jumping(entity)
-	Utils.emit_sound(jump_sound,entity.audio_player_2d,1.,0.4)
 
 func gravity(entity: Entity, to_falling : bool = false):
 	is_falling = (!entity.is_grounded && jump_new_velocity.y >= 0) || to_falling 

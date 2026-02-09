@@ -11,6 +11,7 @@ func _ready() -> void:
 
 func collide_and_slide_no_delta() -> void:
 	entity.just_landed = !entity.is_grounded
+	entity.is_grounded_last_frame = entity.is_grounded
 	entity.is_grounded = false
 	entity.is_hitting_ceiling = false
 	entity.is_hitting_wall = false

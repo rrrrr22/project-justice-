@@ -188,7 +188,7 @@ animations = [{
 }]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_2wrr6"]
-points = PackedVector2Array(4, 12, -4, 12, -10, -12, 0, -16, 10, -12)
+points = PackedVector2Array(4, 12, -4, 12, -4, -12, 0, -16, 4, -12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tu111"]
 size = Vector2(8, 32)

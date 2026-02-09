@@ -40,7 +40,7 @@ entity_sprite = NodePath("EntitySprite")
 body = NodePath("Collision")
 entity_stats = SubResource("Resource_670qe")
 
-[node name="Collision" parent="." index="1" unique_id=2092463269 node_paths=PackedStringArray("entity") instance=ExtResource("4_670qe")]
+[node name="Collision" parent="." index="4" unique_id=2092463269 node_paths=PackedStringArray("entity") instance=ExtResource("4_670qe")]
 collision_layer = 1
 entity = NodePath("..")
 

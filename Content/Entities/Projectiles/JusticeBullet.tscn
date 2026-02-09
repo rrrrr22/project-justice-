@@ -55,8 +55,9 @@ scenes_on_kill = Array[PackedScene]([ExtResource("2_bkayu")])
 entity_sprite = NodePath("EntitySprite")
 on_spawn_sound = ExtResource("2_0gkxf")
 on_kill_sound = ExtResource("3_bkayu")
-pitch_difference_spawn = 0.3
+pitch_difference_spawn = 2.0
 pitch_spawn = 3.0
+pitch_kill = 2.0
 queue_free_on_kill = true
 
 [node name="AudioStreamPlayer2D" parent="." index="0" unique_id=1702584557]

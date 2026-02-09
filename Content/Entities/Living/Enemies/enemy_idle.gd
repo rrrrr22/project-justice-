@@ -10,7 +10,7 @@ func on_entered(entity: Entity, prev: String) -> void:
 		entity.entity_sprite.play(&"Idle")
 
 func on_update(entity: Entity) -> void:
-	entity.velocity = jump_update(entity)
+	apply_gravity(entity)
 	if JusticeGlobal.player.position.distance_to(entity.position) <= alert_distance:
 		change.emit(self,on_alert_state)
 		

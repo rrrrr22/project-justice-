@@ -4,7 +4,6 @@ func reset_state_vars():
 	coyote_timer = 0
 	grounded_state_reset_delay = 0
 	
-var grounded_state_reset_delay : int = 0
 var coyote_timer : int = 0
 func on_entered(entity: Entity, prev: String) -> void:
 	coyote_timer = 6

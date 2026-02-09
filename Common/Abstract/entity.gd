@@ -25,21 +25,15 @@ var entity_stats : EntityStats
 @export 
 var entities_pool : EntitiesPool
 @export
-var audio_player_2d: AudioStreamPlayer2D
+var audio_spawn: AudioStreamPlayer2D
 @export
-var on_spawn_sound: AudioStream
-@export 
-var on_kill_sound: AudioStream
-@export 
-var pitch_difference_spawn : float
-@export 
-var pitch_difference_kill : float
-@export 
-var pitch_spawn : float
-@export 
-var pitch_kill : float
+var audio_kill: AudioStreamPlayer2D
+@export
+var audio_jump: AudioStreamPlayer2D
+@export
+var audio_jump_hit: AudioStreamPlayer2D
 @export var queue_free_on_kill : bool = false
-
+var is_grounded_last_frame : bool = false
 var is_grounded : bool = true
 var just_landed : bool = false
 var is_hitting_ceiling : bool = false
@@ -49,7 +43,6 @@ var current_aim_state : JusticeGlobal.aim_state = JusticeGlobal.aim_state.STRAIG
 func _ready() -> void:
 	if body:
 		body.global_position = position
-	Utils.emit_sound(on_spawn_sound,audio_player_2d,pitch_spawn,pitch_difference_spawn)
 	on_ready()
 	
 func on_ready() -> void:
@@ -102,8 +95,8 @@ func kill():
 	remove_child(remove_child_on_kill)
 	if queue_free_on_kill:
 		queue_free()
-	if audio_player_2d.playing:
-		audio_player_2d.reparent(get_parent())
+	if audio_spawn.playing:
+		audio_spawn.reparent(get_parent())
 	on_kill()
 	
 func on_kill():
