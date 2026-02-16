@@ -6,5 +6,4 @@
 [node name="EntitySprite" type="AnimatedSprite2D" unique_id=1272832984]
 sprite_frames = ExtResource("1_m6hr0")
 animation = &"Idle"
-offset = Vector2(0, 1)
 script = ExtResource("2_51428")

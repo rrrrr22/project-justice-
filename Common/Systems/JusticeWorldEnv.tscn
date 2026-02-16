@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://iqehf6mf8h0l"]
+
+[ext_resource type="Environment" uid="uid://mkyw5bj04puv" path="res://Common/BaseResources/JusticeEnv.tres" id="1_yfct1"]
+
+[node name="JusticeWorldEnv" type="WorldEnvironment" unique_id=346270090]
+environment = ExtResource("1_yfct1")

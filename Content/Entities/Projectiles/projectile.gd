@@ -1,8 +1,7 @@
 extends State
 
-@export 
-var max_time_left = 30
-var time_left = max_time_left
+@export var max_time_left = 30
+@onready var time_left = max_time_left
 
 func reset_state_vars():
 	time_left = max_time_left

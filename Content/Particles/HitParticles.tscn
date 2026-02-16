@@ -1,25 +1,54 @@
 [gd_scene format=3 uid="uid://drb6ukeqd068n"]
 
 [ext_resource type="PackedScene" uid="uid://c4ip81876jiuj" path="res://Common/Abstract/JusticeParticles.tscn" id="1_0mjia"]
-[ext_resource type="Texture2D" uid="uid://drjdgcmsw8j0j" path="res://Assets/Textures/ParticlePlasma.png" id="2_is7iw"]
+[ext_resource type="Shader" uid="uid://cwdcegs4jkb5k" path="res://Graphics/Shaders/AdditiveShader.gdshader" id="2_14fey"]
+[ext_resource type="Texture2D" uid="uid://dx2a8x6w0rptq" path="res://Assets/Textures/VFX/orb1.png" id="2_is7iw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_is7iw"]
-blend_mode = 1
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4myr"]
+shader = ExtResource("2_14fey")
+
+[sub_resource type="Gradient" id="Gradient_14fey"]
+offsets = PackedFloat32Array(0, 0.11165048, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.058252428, 0.32415766, 0.83380926, 0.94174755, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r4myr"]
+gradient = SubResource("Gradient_14fey")
 
 [sub_resource type="Curve" id="Curve_14fey"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.084690556, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r4myr"]
+curve = SubResource("Curve_14fey")
+
+[sub_resource type="Curve" id="Curve_du3om"]
+_limits = [0.0, 35.42, 0.0, 1.0]
+_data = [Vector2(0, 35.42), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6u0l1"]
+curve = SubResource("Curve_du3om")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_14fey"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 524.51996
+velocity_limit_curve = SubResource("CurveTexture_6u0l1")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.06
+scale_curve = SubResource("CurveTexture_r4myr")
+color_ramp = SubResource("GradientTexture1D_r4myr")
 
 [node name="JusticeParticles" unique_id=285260557 instance=ExtResource("1_0mjia")]
-material = SubResource("CanvasItemMaterial_is7iw")
+physics_interpolation_mode = 1
+material = SubResource("ShaderMaterial_r4myr")
+amount = 16
 texture = ExtResource("2_is7iw")
 lifetime = 0.42
-explosiveness = 1.0
+explosiveness = 0.75
 randomness = 1.0
-fixed_fps = 60
+fixed_fps = 50
+interpolate = false
 fract_delta = false
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 19.48
-initial_velocity_max = 19.48
-scale_amount_curve = SubResource("Curve_14fey")
+process_material = SubResource("ParticleProcessMaterial_14fey")

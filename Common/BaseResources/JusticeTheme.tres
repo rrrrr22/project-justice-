@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://dpwyjk1604dxs"]
+
+[ext_resource type="FontFile" uid="uid://imiow71weba0" path="res://Assets/Fonts/GameFont.ttf" id="1_uxg58"]
+
+[resource]
+default_font = ExtResource("1_uxg58")

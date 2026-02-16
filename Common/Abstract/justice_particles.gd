@@ -1,4 +1,4 @@
-class_name JusticeParticles extends CPUParticles2D
+class_name JusticeParticles extends GPUParticles2D
 
 func _ready() -> void:
 	emitting = true

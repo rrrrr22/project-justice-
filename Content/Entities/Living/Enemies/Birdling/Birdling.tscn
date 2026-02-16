@@ -3,17 +3,49 @@
 [ext_resource type="PackedScene" uid="uid://cbpaedys21hxd" path="res://Content/Entities/Living/Enemies/EnemyBase.tscn" id="1_21qkm"]
 [ext_resource type="Script" uid="uid://cycbrmqc62ati" path="res://Content/Entities/Living/Enemies/enemy_idle.gd" id="2_1khqm"]
 [ext_resource type="Texture2D" uid="uid://rgmiqiocw02k" path="res://Assets/Textures/Enemies/Birdling/Birdling_dead.png" id="2_f8y1i"]
+[ext_resource type="Script" uid="uid://usp14nfhkfyh" path="res://Common/Systems/entity_stats.gd" id="2_q28yh"]
 [ext_resource type="Texture2D" uid="uid://b67m2ovo6fc0" path="res://Assets/Textures/Enemies/Birdling/Birdling_idle.png" id="3_tkkjk"]
 [ext_resource type="Script" uid="uid://c5dyiiaun121d" path="res://Content/Entities/Living/Enemies/enemy_follow.gd" id="3_xtja6"]
 [ext_resource type="AudioStream" uid="uid://c7ey1cp2lvh8q" path="res://Assets/Sounds/JumpHit.wav" id="4_8kqyo"]
 [ext_resource type="Texture2D" uid="uid://v61c85c1gwk3" path="res://Assets/Textures/Enemies/Birdling/Birdling_walk.png" id="4_r14xy"]
 [ext_resource type="AudioStream" uid="uid://baymsb183biik" path="res://Assets/Sounds/MCJump.wav" id="4_v0ttd"]
+[ext_resource type="Script" uid="uid://crisghjqp2ls2" path="res://Content/Entities/Living/Enemies/enemy_dead.gd" id="9_wsftk"]
+
+[sub_resource type="Resource" id="Resource_nbpcr"]
+script = ExtResource("2_q28yh")
+max_hp = 15
+metadata/_custom_type_script = "uid://usp14nfhkfyh"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_27f5k"]
 size = Vector2(16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8y1i"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q28yh"]
+
+[sub_resource type="Shader" id="Shader_670qe"]
+code = "shader_type canvas_item;
+uniform float progress : hint_range(0.0, 1.0, 0.1);
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	
+	COLOR.rgb = COLOR.rgb + progress;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q28yh"]
+resource_local_to_scene = true
+shader = SubResource("Shader_670qe")
+shader_parameter/progress = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m74bk"]
 atlas = ExtResource("2_f8y1i")
@@ -43,7 +75,7 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("4_r14xy")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8kqyo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nbpcr"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -90,12 +122,34 @@ animations = [{
 
 [node name="Entity" unique_id=228107323 instance=ExtResource("1_21qkm")]
 sprite_visible_on_kill = true
+entity_stats = SubResource("Resource_nbpcr")
 
-[node name="AudioStreamPlayer2D" parent="." index="0" unique_id=1702584557]
+[node name="OnSpawnAudio" parent="." index="0" unique_id=1702584557]
 script = null
 
-[node name="StateMachine" parent="." index="1" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+[node name="Collision" parent="." index="4" unique_id=2092463269]
+collision_layer = 0
+motion_mode = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0" unique_id=666906036]
+shape = SubResource("RectangleShape2D_27f5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityHitBox" parent_id_path=PackedInt32Array(1759118316) index="0" unique_id=262438264]
+shape = SubResource("RectangleShape2D_f8y1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtfulArea" parent_id_path=PackedInt32Array(2031989949) index="0" unique_id=1689476445]
+shape = SubResource("CircleShape2D_q28yh")
+
+[node name="EntitySprite" parent="." index="7" unique_id=1272832984]
+material = SubResource("ShaderMaterial_q28yh")
+sprite_frames = SubResource("SpriteFrames_nbpcr")
+animation = &"Walk"
+autoplay = "Idle"
+frame_progress = 0.780022
+
+[node name="StateMachine" parent="." index="8" unique_id=453758574 node_paths=PackedStringArray("starting_state", "on_killed_state")]
 starting_state = NodePath("Idle")
+on_killed_state = NodePath("Dead")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1683181905]
 script = ExtResource("2_1khqm")
@@ -116,24 +170,8 @@ time_to_floor = 24.0
 jump_sound = ExtResource("4_v0ttd")
 jump_hit_sound = ExtResource("4_8kqyo")
 
-[node name="Collision" parent="." index="4" unique_id=2092463269 node_paths=PackedStringArray("rays_position")]
-collision_layer = 0
-rays_position = [NodePath("Marker2D"), NodePath("Marker2D2")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision" index="0" unique_id=666906036]
-shape = SubResource("RectangleShape2D_27f5k")
-
-[node name="Marker2D" type="Marker2D" parent="Collision" index="1" unique_id=1497076750]
-position = Vector2(-8, 16)
-
-[node name="Marker2D2" type="Marker2D" parent="Collision" index="2" unique_id=1963519876]
-position = Vector2(8, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityHitBox" parent_id_path=PackedInt32Array(1759118316) index="0" unique_id=262438264]
-shape = SubResource("RectangleShape2D_f8y1i")
-
-[node name="EntitySprite" parent="." index="7" unique_id=1272832984]
-sprite_frames = SubResource("SpriteFrames_8kqyo")
-animation = &"Walk"
-autoplay = "Idle"
-frame_progress = 0.780022
+[node name="Dead" type="Node" parent="StateMachine" index="2" unique_id=445441737]
+script = ExtResource("9_wsftk")
+jump_height = 16.0
+time_to_peak = 35.0
+time_to_floor = 12.5

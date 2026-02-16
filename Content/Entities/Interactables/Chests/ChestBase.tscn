@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dbc1lxu0v83pt"]
+
+[ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_g4ck8"]
+[ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="2_e25e1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghcnf"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"MidAir",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entity_sprite") instance=ExtResource("1_g4ck8")]
+sprite_visible_on_kill = true
+entity_sprite = NodePath("EntitySprite")
+queue_free_on_kill = true
+
+[node name="EntitySprite" parent="." index="0" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("2_e25e1")]
+sprite_frames = SubResource("SpriteFrames_ghcnf")
+entity = NodePath("..")

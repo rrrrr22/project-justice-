@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dfdnbjm0bw5fy"]
 
 [ext_resource type="Script" uid="uid://up10r7yistxt" path="res://Common/Systems/Global/justice_global.gd" id="1_tsfpd"]
+[ext_resource type="PackedScene" uid="uid://c78q6tlbx3e1m" path="res://Common/Systems/DamageNumber.tscn" id="2_04spr"]
 
 [node name="JusticeGlobal" type="Node" unique_id=1986704972]
 script = ExtResource("1_tsfpd")
+damage_notifier = ExtResource("2_04spr")
 starting_room = "uid://c5kibu27hcmi3"

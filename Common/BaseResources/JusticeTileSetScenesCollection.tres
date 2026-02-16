@@ -7,4 +7,5 @@ resource_name = "EngineCollection"
 scenes/1/scene = ExtResource("1_uiyca")
 
 [resource]
+tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetScenesCollectionSource_ay7mt")

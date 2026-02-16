@@ -1,17 +1,35 @@
 [gd_scene format=3 uid="uid://cbpaedys21hxd"]
 
 [ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_a3bo7"]
-[ext_resource type="Script" uid="uid://usp14nfhkfyh" path="res://Common/Systems/entity_stats.gd" id="2_5yrp8"]
 [ext_resource type="PackedScene" uid="uid://co833tm5266mw" path="res://Common/Abstract/EntityHitBox.tscn" id="2_wan14"]
 [ext_resource type="PackedScene" uid="uid://dmyde8q5r3jsh" path="res://Common/Abstract/HurtfulArea.tscn" id="3_5yrp8"]
 [ext_resource type="PackedScene" uid="uid://nxhg3s2xo16r" path="res://Common/Abstract/Collision.tscn" id="4_670qe"]
 [ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="6_670qe"]
 
-[sub_resource type="Resource" id="Resource_670qe"]
-script = ExtResource("2_5yrp8")
-metadata/_custom_type_script = "uid://usp14nfhkfyh"
+[sub_resource type="Shader" id="Shader_670qe"]
+code = "shader_type canvas_item;
+uniform float progress : hint_range(0.0, 1.0, 0.1);
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_670qe"]
+void fragment() {
+	
+	COLOR.rgb = COLOR.rgb + progress;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aupqd"]
+resource_local_to_scene = true
+shader = SubResource("Shader_670qe")
+shader_parameter/progress = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rj5ga"]
 resource_local_to_scene = true
 animations = [{
 "frames": [],
@@ -38,7 +56,6 @@ animations = [{
 [node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entity_sprite", "body") instance=ExtResource("1_a3bo7")]
 entity_sprite = NodePath("EntitySprite")
 body = NodePath("Collision")
-entity_stats = SubResource("Resource_670qe")
 
 [node name="Collision" parent="." index="4" unique_id=2092463269 node_paths=PackedStringArray("entity") instance=ExtResource("4_670qe")]
 collision_layer = 1
@@ -54,6 +71,7 @@ hitbox_penetration = -1
 entity = NodePath("..")
 
 [node name="EntitySprite" parent="." index="7" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("6_670qe")]
-sprite_frames = SubResource("SpriteFrames_670qe")
+material = SubResource("ShaderMaterial_aupqd")
+sprite_frames = SubResource("SpriteFrames_rj5ga")
 animation = &"Dead"
 entity = NodePath("..")

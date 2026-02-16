@@ -10,17 +10,21 @@ var hitbox_penetration = 1
 var isPlayerSided : bool = false
 
 var exclude : Array[EntityHitbox] = []
-
+var hit_something : bool = false
 func run():
 	scan()
 	
 func scan() -> void:
+	hit_something = false
 	for node in get_overlapping_areas():
 		if node is EntityHitbox:
-			if !exclude.has(node) && isPlayerSided != node.isPlayerSided:
+			if !hit_something && node.entity.is_active && !exclude.has(node) && isPlayerSided != node.isPlayerSided:
 				exclude.append(node)
+				hit_something = true
 				node.take_hit(self)
 				on_hit(node)
+				if hitbox_penetration == 0:
+					break
 func on_hit(hitbox : EntityHitbox):
 	if hitbox_penetration > 0:
 		hitbox_penetration -= 1

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c78q6tlbx3e1m"]
+
+[ext_resource type="Script" uid="uid://d2cucqfdkojad" path="res://Common/Systems/damage_number.gd" id="1_htt61"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_htt61"]
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="DamageNumber" type="Label" unique_id=573491134]
+anchors_preset = -1
+anchor_left = -0.031000001
+anchor_top = -0.021000002
+anchor_right = 0.031000001
+anchor_bottom = 0.021000002
+offset_left = -0.1279993
+offset_top = 0.06400108
+offset_right = 0.1279993
+offset_bottom = -0.06400108
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 4
+label_settings = SubResource("LabelSettings_htt61")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("1_htt61")

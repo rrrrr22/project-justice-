@@ -8,6 +8,7 @@ var is_falling_through_platform : bool = false
 var is_below_platform : bool = false
 var is_hitting_wall : bool = false
 var is_active : bool = true
+var current_iframes : int = 0
 @export
 var remove_child_on_kill : Node
 @export
@@ -43,6 +44,8 @@ var current_aim_state : JusticeGlobal.aim_state = JusticeGlobal.aim_state.STRAIG
 func _ready() -> void:
 	if body:
 		body.global_position = position
+	if entity_stats:
+		entity_stats.init_stats()
 	on_ready()
 	
 func on_ready() -> void:
@@ -51,7 +54,7 @@ func on_ready() -> void:
 func _physics_process(delta: float) -> void:
 	old_velocity = velocity
 	old_position = position
-
+	current_iframes = move_toward(current_iframes, 0, 1)
 	pre_update()
 	if state_machine:
 		state_machine.update()
@@ -70,7 +73,9 @@ func post_update():
 	pass
 	
 func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
+	current_iframes = entity_stats.iframes
 	entity_stats.take_damage(hurtBox.damage_amount)
+	JusticeGlobal.new_combat_text(position,hurtBox.damage_amount)
 	state_machine.on_damage_taken(entity, hurtBox)
 	
 func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):

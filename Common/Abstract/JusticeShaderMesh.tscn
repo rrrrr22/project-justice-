@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dcbeca0tl1is4"]
+
+[ext_resource type="Script" uid="uid://bfuw6ql61xtb7" path="res://Common/Abstract/justice_shader_mesh.gd" id="1_oty3l"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fqnup"]
+size = Vector2(512, 384)
+center_offset = Vector3(256, 192, 0)
+
+[node name="JusticeShaderMesh" type="MeshInstance2D" unique_id=1592430125]
+mesh = SubResource("QuadMesh_fqnup")
+script = ExtResource("1_oty3l")

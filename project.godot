@@ -13,6 +13,7 @@ config_version=5
 config/name="Project Justice"
 run/main_scene="uid://dang4kdoadj80"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=50
 config/icon="res://icon.svg"
 
 [autoload]
@@ -20,6 +21,14 @@ config/icon="res://icon.svg"
 MetSys="*uid://c01ibpvrp2wsd"
 SceneRegister="*uid://b4xpftkbaare4"
 JusticeGlobal="*uid://dfdnbjm0bw5fy"
+
+[debug]
+
+shapes/shader_cache/compress=true
+shapes/physics_ticks_per_second=60
+shapes/physics_interpolation=true
+shapes/size/viewport_width=256
+shapes/size/viewport_height=648
 
 [display]
 
@@ -33,7 +42,7 @@ project/assembly_name="Project Justice"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg")
+enabled=PackedStringArray("res://addons/MetroidvaniaSystem/plugin.cfg")
 
 [gui]
 
@@ -91,7 +100,6 @@ WeaponSwitchLeft={
 [physics]
 
 3d/physics_engine="Jolt Physics"
-common/physics_interpolation=true
 
 [rendering]
 
@@ -99,3 +107,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_environment="uid://mkyw5bj04puv"

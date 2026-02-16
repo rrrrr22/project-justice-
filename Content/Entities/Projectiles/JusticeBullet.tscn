@@ -1,17 +1,12 @@
 [gd_scene format=3 uid="uid://8svbmivyvdwm"]
 
 [ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_ja7ji"]
-[ext_resource type="AudioStream" uid="uid://vcipj08svrxw" path="res://Assets/Sounds/Shot0.ogg" id="2_0gkxf"]
 [ext_resource type="PackedScene" uid="uid://drb6ukeqd068n" path="res://Content/Particles/HitParticles.tscn" id="2_bkayu"]
 [ext_resource type="PackedScene" uid="uid://b4frkppndqmlu" path="res://Common/Abstract/State.tscn" id="2_df8sa"]
-[ext_resource type="AudioStream" uid="uid://cp8p1bwod370q" path="res://Assets/Sounds/HittingTile.ogg" id="3_bkayu"]
 [ext_resource type="Script" uid="uid://ci887rvpo6qpc" path="res://Content/Entities/Projectiles/projectile.gd" id="3_umbym"]
 [ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="4_0gkxf"]
 [ext_resource type="Texture2D" uid="uid://lmg2rxhmk676" path="res://Assets/Textures/JusticeBullet.png" id="5_bkayu"]
 [ext_resource type="PackedScene" uid="uid://dmyde8q5r3jsh" path="res://Common/Abstract/HurtfulArea.tscn" id="6_jg2o5"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bkayu"]
-blend_mode = 1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_df8sa"]
 atlas = ExtResource("5_bkayu")
@@ -21,7 +16,7 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("5_bkayu")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bkayu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_umbym"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -47,25 +42,19 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g70xn"]
-radius = 4.0
+radius = 8.0
 
 [node name="Entity" unique_id=228107323 node_paths=PackedStringArray("entity_sprite") instance=ExtResource("1_ja7ji")]
 sprite_visible_on_kill = true
 scenes_on_kill = Array[PackedScene]([ExtResource("2_bkayu")])
 entity_sprite = NodePath("EntitySprite")
-on_spawn_sound = ExtResource("2_0gkxf")
-on_kill_sound = ExtResource("3_bkayu")
-pitch_difference_spawn = 2.0
-pitch_spawn = 3.0
-pitch_kill = 2.0
 queue_free_on_kill = true
 
-[node name="AudioStreamPlayer2D" parent="." index="0" unique_id=1702584557]
+[node name="OnSpawnAudio" parent="." index="0" unique_id=1702584557]
 pitch_scale = 2.01
 
 [node name="EntitySprite" parent="." index="1" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("4_0gkxf")]
-material = SubResource("CanvasItemMaterial_bkayu")
-sprite_frames = SubResource("SpriteFrames_bkayu")
+sprite_frames = SubResource("SpriteFrames_umbym")
 autoplay = "Idle"
 offset = Vector2(0, 0)
 entity = NodePath("..")
@@ -80,11 +69,11 @@ entity = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtfulArea" index="0" unique_id=1972580682]
 shape = SubResource("CircleShape2D_g70xn")
 
-[node name="StateMachine" parent="." index="3" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+[node name="StateMachine" parent="." index="6" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
 starting_state = NodePath("Projectile")
 
 [node name="Projectile" parent="StateMachine" index="0" unique_id=1828866448 instance=ExtResource("2_df8sa")]
 script = ExtResource("3_umbym")
-max_time_left = 30
+max_time_left = 5
 
 [connection signal="body_entered" from="HurtfulArea" to="HurtfulArea" method="on_tile_hit"]

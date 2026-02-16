@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bprqce501s5m0"]
+
+[ext_resource type="PackedScene" uid="uid://b4cxof5osq471" path="res://Common/Abstract/JusticeParticle.tscn" id="1_saew7"]
+[ext_resource type="Script" uid="uid://c6hejo0tyyhgh" path="res://Common/Abstract/particle.gd" id="2_0nmki"]
+[ext_resource type="Texture2D" uid="uid://bhvbljoylvh0j" path="res://Assets/Textures/VFX/Circle.png" id="3_xc648"]
+[ext_resource type="Texture2D" uid="uid://c771snqui0ktf" path="res://Assets/Textures/VFX/orb.png" id="4_0nmki"]
+[ext_resource type="Shader" uid="uid://biak1e3ukydek" path="res://Graphics/Shaders/VFXShader.gdshader" id="4_xc648"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7x44m"]
+shader = ExtResource("4_xc648")
+shader_parameter/percentage_to_remove_background = 0.2999999932944
+shader_parameter/black_color_at_value_to_remove = 0.00999999977648
+
+[sub_resource type="Gradient" id="Gradient_saew7"]
+offsets = PackedFloat32Array(0, 0.7548638, 1)
+colors = PackedColorArray(0.54912084, 0.360541, 6.738305e-07, 1, 0, 0, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_saew7"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7x44m"]
+_data = [Vector2(0, 0), 0.0, 4.117844, 0, 1, Vector2(0.16254416, 0.6693315), 1.1009319, 1.1009319, 0, 0, Vector2(1, 1), 0.39484888, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xc648"]
+shader = ExtResource("4_xc648")
+shader_parameter/percentage_to_remove_background = 0.35999999195328
+shader_parameter/black_color_at_value_to_remove = 0.0
+
+[sub_resource type="Curve" id="Curve_uv4gh"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="JusticeParticleManager" unique_id=1319960857 instance=ExtResource("1_saew7")]
+emitting = true
+max_timeleft = 60
+amount = null
+
+[node name="Particle" type="Node2D" parent="." index="0" unique_id=776751279]
+material = SubResource("ShaderMaterial_7x44m")
+scale = Vector2(1.915824, 1.915824)
+script = ExtResource("2_0nmki")
+texture = ExtResource("3_xc648")
+color_ramp = SubResource("Gradient_saew7")
+velocity_curve = SubResource("Curve_saew7")
+velocity_random_angle = null
+scale_curve = SubResource("Curve_7x44m")
+start_scale = Vector2(1, 1)
+end_scale = Vector2(2, 2)
+
+[node name="Particle2" type="Node2D" parent="." index="1" unique_id=1145660670]
+material = SubResource("ShaderMaterial_xc648")
+scale = Vector2(0.19166666, 0.19166666)
+script = ExtResource("2_0nmki")
+texture = ExtResource("4_0nmki")
+color_ramp = SubResource("Gradient_saew7")
+velocity_curve = SubResource("Curve_saew7")
+start_velocity = Vector2(3, 3)
+end_velocity = Vector2(3, 3)
+velocity_random_angle = 30.0
+scale_curve = SubResource("Curve_uv4gh")
+start_scale = Vector2(0.5, 0.5)

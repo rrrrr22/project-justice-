@@ -8,7 +8,7 @@ var accel : float = 0.25
 var on_lost_player_state : String
 
 func on_update(entity: Entity) -> void:
-	if entity.is_hitting_wall && !cant_jump:
+	if (entity.is_grounded_last_frame && !entity.is_grounded && player.position.y <= entity.position.y) || (entity.is_hitting_wall && !cant_jump):
 		jump(entity)
 	if player.position.distance_to(entity.position) <= 512:
 		if player.position.x > entity.position.x:
