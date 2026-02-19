@@ -19,7 +19,8 @@ func scan() -> void:
 	for node in get_overlapping_areas():
 		if node is EntityHitbox:
 			if !hit_something && node.entity.is_active && !exclude.has(node) && isPlayerSided != node.isPlayerSided:
-				exclude.append(node)
+				if hitbox_penetration != -1:
+					exclude.append(node)
 				hit_something = true
 				node.take_hit(self)
 				on_hit(node)

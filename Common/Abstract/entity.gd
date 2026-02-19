@@ -91,7 +91,7 @@ func kill():
 	for packed in scenes_on_kill:
 		var scene = packed.instantiate()
 		if scene is Node2D:
-			scene.position = position
+			scene.position = position + velocity
 		get_tree().current_scene.add_child(scene)
 	if sprite_visible_on_kill:
 		entity_sprite.visible = true

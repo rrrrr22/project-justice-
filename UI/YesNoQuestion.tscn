@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://vl5ruu051bng"]
+
+[ext_resource type="Script" uid="uid://ybrhj4xm0kb4" path="res://UI/yes_no_question.gd" id="1_gsuft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v18sq"]
+bg_color = Color(0.18359044, 0.18359047, 0.18359032, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[node name="YesNoQuestion" type="Control" unique_id=1278865128 node_paths=PackedStringArray("question")]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 3
+anchor_top = 0.00033338866
+anchor_right = 0.93700004
+anchor_bottom = 1.0
+offset_top = -0.12802124
+offset_right = 0.25598145
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gsuft")
+question = NodePath("PanelContainer/VBoxContainer/RichTextLabel")
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1256087598]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -132.0
+offset_top = -76.0
+offset_right = 132.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v18sq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=78515461]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=724790970]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+fit_content = true
+scroll_active = false
+scroll_following = true
+scroll_following_visible_characters = true
+autowrap_mode = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1700446468]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+text = "Yes (Shoot Button)
+No (Jump Button)
+
+
+
+
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

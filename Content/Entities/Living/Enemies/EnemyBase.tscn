@@ -24,12 +24,12 @@ void fragment() {
 //}
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aupqd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yrp8"]
 resource_local_to_scene = true
 shader = SubResource("Shader_670qe")
 shader_parameter/progress = 0.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rj5ga"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_670qe"]
 resource_local_to_scene = true
 animations = [{
 "frames": [],
@@ -71,7 +71,7 @@ hitbox_penetration = -1
 entity = NodePath("..")
 
 [node name="EntitySprite" parent="." index="7" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("6_670qe")]
-material = SubResource("ShaderMaterial_aupqd")
-sprite_frames = SubResource("SpriteFrames_rj5ga")
+material = SubResource("ShaderMaterial_5yrp8")
+sprite_frames = SubResource("SpriteFrames_670qe")
 animation = &"Dead"
 entity = NodePath("..")

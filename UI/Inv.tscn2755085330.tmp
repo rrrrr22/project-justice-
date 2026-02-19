@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://dtju0fckgyow3"]
+
+[ext_resource type="PackedScene" uid="uid://cxdwfx0x4vuha" path="res://UI/InvItem.tscn" id="1_15kn3"]
+[ext_resource type="Script" uid="uid://c50f3jd13clkm" path="res://UI/inv.gd" id="1_ovllg"]
+[ext_resource type="Texture2D" uid="uid://dg4j2gc47ghnb" path="res://Assets/Textures/GameThemeAssets/InvItems/Outline.png" id="2_ovllg"]
+[ext_resource type="Script" uid="uid://crn24ptinup52" path="res://UI/test.gd" id="3_8ih30"]
+[ext_resource type="PackedScene" uid="uid://vl5ruu051bng" path="res://UI/YesNoQuestion.tscn" id="5_oepx3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ih30"]
+bg_color = Color(0.43366587, 0.5893534, 0.9841686, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0.19162956, 0.21598044, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovllg"]
+bg_color = Color(0.83025414, 0.40638646, 5.7756904e-07, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.43697003, 0.33732367, 0.0032637462, 1)
+
+[node name="InvControl" type="Control" unique_id=307309986 node_paths=PackedStringArray("outline", "inv_grid", "item_name_label", "item_desc_label")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ovllg")
+outline = NodePath("Outline")
+inv_grid = NodePath("Panel/Inv")
+item_name_label = NodePath("Tooltip/MarginContainer/VBoxContainer/ItemName")
+item_desc_label = NodePath("Tooltip/MarginContainer/VBoxContainer/ItemDesc")
+
+[node name="YesNoQuestion" parent="." unique_id=1278865128 instance=ExtResource("5_oepx3")]
+layout_mode = 1
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1714095314]
+custom_minimum_size = Vector2(504, 312)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.823
+offset_right = -8.0
+offset_bottom = -4.032013
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ih30")
+
+[node name="Inv" type="GridContainer" parent="Panel" unique_id=894706843]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 12
+
+[node name="InvItem" parent="Panel/Inv" unique_id=620949039 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+script = ExtResource("3_8ih30")
+
+[node name="InvItem2" parent="Panel/Inv" unique_id=1338334725 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem3" parent="Panel/Inv" unique_id=1920568216 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem4" parent="Panel/Inv" unique_id=1392518322 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem5" parent="Panel/Inv" unique_id=1996078067 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem6" parent="Panel/Inv" unique_id=1189437323 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem7" parent="Panel/Inv" unique_id=832444984 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem8" parent="Panel/Inv" unique_id=2030853757 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem9" parent="Panel/Inv" unique_id=1306070859 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem10" parent="Panel/Inv" unique_id=1592843772 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem11" parent="Panel/Inv" unique_id=1848730466 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem12" parent="Panel/Inv" unique_id=1562477010 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem13" parent="Panel/Inv" unique_id=1233717352 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem14" parent="Panel/Inv" unique_id=1024332543 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem15" parent="Panel/Inv" unique_id=1383849168 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem16" parent="Panel/Inv" unique_id=258012585 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem17" parent="Panel/Inv" unique_id=1419915640 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem18" parent="Panel/Inv" unique_id=2001681524 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem19" parent="Panel/Inv" unique_id=328755238 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="InvItem20" parent="Panel/Inv" unique_id=1901518779 instance=ExtResource("1_15kn3")]
+layout_mode = 2
+
+[node name="Outline" type="TextureRect" parent="." unique_id=2074244479]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.062000003
+anchor_bottom = 0.083000004
+offset_right = 0.2559986
+offset_bottom = 0.12799835
+texture = ExtResource("2_ovllg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Tooltip" type="PanelContainer" parent="." unique_id=1853497252]
+custom_minimum_size = Vector2(512, 32)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.8229167
+anchor_right = 0.984
+anchor_bottom = 0.9895833
+offset_left = -20.0
+offset_right = 16.191986
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovllg")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip" unique_id=335829428]
+custom_minimum_size = Vector2(512, 32)
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tooltip/MarginContainer" unique_id=328648177]
+custom_minimum_size = Vector2(504, 32)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ItemName" type="RichTextLabel" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1931656617]
+custom_minimum_size = Vector2(504, 16)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+text = "14123
+"
+scroll_active = false
+scroll_following = true
+scroll_following_visible_characters = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemDesc" type="RichTextLabel" parent="Tooltip/MarginContainer/VBoxContainer" unique_id=1559233902]
+custom_minimum_size = Vector2(504, 16)
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 8
+theme_override_font_sizes/bold_font_size = 8
+theme_override_font_sizes/bold_italics_font_size = 8
+theme_override_font_sizes/italics_font_size = 8
+theme_override_font_sizes/mono_font_size = 8
+text = "14123
+"
+scroll_active = false
+scroll_following = true
+scroll_following_visible_characters = true
+horizontal_alignment = 1
+vertical_alignment = 1

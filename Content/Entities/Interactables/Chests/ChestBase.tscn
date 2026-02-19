@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cdj2n00klmmxt" path="res://Common/Abstract/Entity.tscn" id="1_g4ck8"]
 [ext_resource type="PackedScene" uid="uid://wcq0ucwl4on2" path="res://Common/Abstract/EntitySprite.tscn" id="2_e25e1"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ghcnf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e25e1"]
 resource_local_to_scene = true
 animations = [{
 "frames": [],
@@ -28,5 +28,5 @@ entity_sprite = NodePath("EntitySprite")
 queue_free_on_kill = true
 
 [node name="EntitySprite" parent="." index="0" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("2_e25e1")]
-sprite_frames = SubResource("SpriteFrames_ghcnf")
+sprite_frames = SubResource("SpriteFrames_e25e1")
 entity = NodePath("..")

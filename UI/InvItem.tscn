@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cxdwfx0x4vuha"]
+
+[ext_resource type="Texture2D" uid="uid://bwgtcuu7u708u" path="res://Assets/Textures/GameThemeAssets/InvItems/GenericKey.png" id="1_mnhuo"]
+[ext_resource type="Script" uid="uid://h7a6h468b4mb" path="res://UI/InvItem.gd" id="2_7gry2"]
+
+[node name="InvItem" type="TextureRect" unique_id=620949039]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = -1
+anchor_right = 0.031000001
+anchor_bottom = 0.042000003
+offset_right = -15.872001
+offset_bottom = -16.128002
+texture = ExtResource("1_mnhuo")
+script = ExtResource("2_7gry2")

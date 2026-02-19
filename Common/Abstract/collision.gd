@@ -23,6 +23,6 @@ func collide_and_slide_no_delta() -> void:
 	velocity = vel
 	entity.is_grounded = is_on_floor()
 	entity.is_hitting_ceiling = is_on_ceiling()
-
+	entity.is_hitting_wall = is_on_wall()
 	
 	

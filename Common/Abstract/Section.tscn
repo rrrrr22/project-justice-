@@ -2,12 +2,26 @@
 
 [ext_resource type="Script" uid="uid://3jyxk5omp6r7" path="res://Common/Abstract/section.gd" id="1_ic3mr"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_mjw8q"]
+[ext_resource type="PackedScene" uid="uid://dtju0fckgyow3" path="res://UI/Inv.tscn" id="3_krj0e"]
 [ext_resource type="TileSet" uid="uid://clkmg64r7061v" path="res://Common/BaseResources/JusticeTileSet.tres" id="3_mjw8q"]
+[ext_resource type="PackedScene" uid="uid://8pfp687oahi8" path="res://UI/MCInfoContainer.tscn" id="4_xa76w"]
 
 [node name="Section" type="Node2D" unique_id=1453167351 node_paths=PackedStringArray("camera", "sectionMainTiles")]
 script = ExtResource("1_ic3mr")
 camera = NodePath("JusticeCamera")
 sectionMainTiles = NodePath("JusticeTiles")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=2116110337]
+
+[node name="McInfoContainer" parent="UICanvasLayer" unique_id=2108794331 instance=ExtResource("4_xa76w")]
+anchor_right = 0.35200003
+anchor_bottom = 0.22900002
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -0.22401428
+offset_bottom = 0.06399536
+
+[node name="InvControl" parent="UICanvasLayer" unique_id=307309986 instance=ExtResource("3_krj0e")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1360780983]
 layer = -1

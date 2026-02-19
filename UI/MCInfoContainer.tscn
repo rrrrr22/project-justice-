@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://8pfp687oahi8"]
+
+[ext_resource type="Script" uid="uid://batdeuw2cedm1" path="res://UI/health_bar.gd" id="1_bqk4w"]
+[ext_resource type="LabelSettings" uid="uid://c2ti88simuak1" path="res://Common/BaseResources/OutlineLabel.tres" id="2_aoxyi"]
+[ext_resource type="Script" uid="uid://r10xye515qbr" path="res://UI/health_numb.gd" id="2_dojpx"]
+[ext_resource type="Script" uid="uid://csx73cunnxwlj" path="res://UI/energy_bar.gd" id="2_u1qhh"]
+[ext_resource type="Texture2D" uid="uid://df1xosd8cfcl" path="res://Assets/Textures/GameThemeAssets/Weapons/AutoPlasma.png" id="5_aoxyi"]
+
+[sub_resource type="Gradient" id="Gradient_bqk4w"]
+colors = PackedColorArray(0.5759093, 0.19015324, 0, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u1qhh"]
+gradient = SubResource("Gradient_bqk4w")
+width = 48
+height = 8
+
+[sub_resource type="Gradient" id="Gradient_u1qhh"]
+colors = PackedColorArray(3.85046e-07, 0.39469242, 0.33357555, 1, 0.7920822, 5.4869056e-06, 0.5089849, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dojpx"]
+gradient = SubResource("Gradient_u1qhh")
+width = 48
+height = 8
+
+[node name="McInfoContainer" type="VBoxContainer" unique_id=2108794331]
+anchors_preset = -1
+anchor_right = 0.289
+anchor_bottom = 0.16700001
+offset_right = 0.03199768
+offset_bottom = -0.12800598
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1035025600]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1041332983]
+layout_mode = 2
+text = "HP"
+label_settings = ExtResource("2_aoxyi")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HBoxContainer" unique_id=711811912]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_u1qhh")
+script = ExtResource("1_bqk4w")
+
+[node name="HealthNumb" type="Label" parent="HBoxContainer/HealthBar" unique_id=1050115986]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 8.0
+label_settings = ExtResource("2_aoxyi")
+script = ExtResource("2_dojpx")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=30425017]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2" unique_id=739810149]
+layout_mode = 2
+text = "EN"
+label_settings = ExtResource("2_aoxyi")
+
+[node name="EnergyBar" type="TextureProgressBar" parent="HBoxContainer2" unique_id=2006990878]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_dojpx")
+script = ExtResource("2_u1qhh")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="." unique_id=1342380997]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PrevWeapon" type="TextureRect" parent="HBoxContainer3" unique_id=262034870]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_aoxyi")
+
+[node name="CurrentWeapon" type="TextureRect" parent="HBoxContainer3" unique_id=1200295767]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_aoxyi")
+
+[node name="NextWeapon" type="TextureRect" parent="HBoxContainer3" unique_id=189026829]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("5_aoxyi")

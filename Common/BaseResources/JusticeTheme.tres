@@ -2,5 +2,25 @@
 
 [ext_resource type="FontFile" uid="uid://imiow71weba0" path="res://Assets/Fonts/GameFont.ttf" id="1_uxg58"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rptb8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.30588236, 0.7411765, 0, 0)
+border_width_left = 32
+border_width_top = 32
+border_width_right = 32
+border_width_bottom = 32
+border_color = Color(0.05490196, 0, 0.8, 1)
+border_blend = true
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+corner_detail = 16
+shadow_size = 16
+
 [resource]
 default_font = ExtResource("1_uxg58")
+Panel/styles/panel = SubResource("StyleBoxFlat_rptb8")
