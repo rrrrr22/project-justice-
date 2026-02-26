@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://brapnc0vb3pqc"]
+
+[ext_resource type="Script" uid="uid://big0hlytfodbt" path="res://UI/justice_button.gd" id="1_gvrf6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvrf6"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="JusticeButton" type="RichTextLabel" unique_id=889331530]
+focus_mode = 2
+mouse_filter = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_gvrf6")
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_gvrf6")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

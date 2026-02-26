@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dkhlbwjuk0v08"]
+
+[ext_resource type="Script" uid="uid://bteb3cgcfvkl2" path="res://UI/IngameUI/inventory_manager.gd" id="1_5nwlq"]
+[ext_resource type="Texture2D" uid="uid://cdloxiee2rxin" path="res://Assets/Textures/GameThemeAssets/Background.png" id="2_4yidy"]
+[ext_resource type="PackedScene" uid="uid://cxdwfx0x4vuha" path="res://UI/InvItem.tscn" id="3_j4tw3"]
+[ext_resource type="Texture2D" uid="uid://dg4j2gc47ghnb" path="res://Assets/Textures/GameThemeAssets/InvItems/Outline.png" id="4_o4u8v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hwtca"]
+texture = ExtResource("2_4yidy")
+
+[node name="InvetoryManager" type="Control" unique_id=1276119177 node_paths=PackedStringArray("item_name", "item_desc", "inv_grid", "outline")]
+process_mode = 3
+custom_minimum_size = Vector2(512, 384)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5nwlq")
+item_name = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ItemName")
+item_desc = NodePath("PanelContainer/VBoxContainer/VBoxContainer/ItemDesc")
+inv_grid = NodePath("PanelContainer/VBoxContainer/CenterContainer/MarginContainer/GridContainer")
+outline = NodePath("Selector")
+inventory_item = ExtResource("3_j4tw3")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=179008034]
+custom_minimum_size = Vector2(512, 384)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -192.0
+offset_right = 256.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hwtca")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1780759159]
+custom_minimum_size = Vector2(512, 192)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/VBoxContainer" unique_id=1936757114]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/CenterContainer" unique_id=1283090531]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/CenterContainer/MarginContainer" unique_id=1920126058]
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=41540514]
+layout_mode = 2
+
+[node name="ItemName" type="RichTextLabel" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1920840712]
+custom_minimum_size = Vector2(512, 44)
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ItemDesc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1235693419]
+custom_minimum_size = Vector2(512, 88)
+layout_mode = 2
+bbcode_enabled = true
+text = "
+"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Selector" type="TextureRect" parent="." unique_id=2058954244]
+visible = false
+custom_minimum_size = Vector2(19, 19)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.037
+anchor_bottom = 0.049000002
+offset_right = 0.055999756
+offset_bottom = 0.18399811
+texture = ExtResource("4_o4u8v")
+metadata/_edit_use_anchors_ = true

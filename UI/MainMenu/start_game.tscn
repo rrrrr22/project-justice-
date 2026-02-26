@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgyg2f7ten7c0"]
+
+[ext_resource type="PackedScene" uid="uid://brapnc0vb3pqc" path="res://UI/justice_button.tscn" id="1_k307w"]
+[ext_resource type="Script" uid="uid://dn8ohscvs235e" path="res://UI/MainMenu/start_game.gd" id="2_gnsbo"]
+
+[node name="StartGame" unique_id=889331530 instance=ExtResource("1_k307w")]
+custom_minimum_size = Vector2(512, 384)
+text = "Start New Game"
+script = ExtResource("2_gnsbo")

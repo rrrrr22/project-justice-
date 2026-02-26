@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://c50f3jd13clkm" path="res://UI/inv.gd" id="1_ovllg"]
 [ext_resource type="Texture2D" uid="uid://dg4j2gc47ghnb" path="res://Assets/Textures/GameThemeAssets/InvItems/Outline.png" id="2_ovllg"]
 [ext_resource type="Script" uid="uid://crn24ptinup52" path="res://UI/test.gd" id="3_8ih30"]
-[ext_resource type="PackedScene" uid="uid://vl5ruu051bng" path="res://UI/YesNoQuestion.tscn" id="5_oepx3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ih30"]
 bg_color = Color(0.43366587, 0.5893534, 0.9841686, 1)
@@ -26,8 +25,8 @@ border_width_right = 8
 border_width_bottom = 8
 border_color = Color(0.43697003, 0.33732367, 0.0032637462, 1)
 
-[node name="InvControl" type="Control" unique_id=307309986 node_paths=PackedStringArray("outline", "inv_grid", "item_name_label", "item_desc_label", "yes_no_question")]
-process_mode = 3
+[node name="InvControl" type="Control" unique_id=307309986 node_paths=PackedStringArray("outline", "inv_grid", "item_name_label", "item_desc_label")]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +42,6 @@ outline = NodePath("Outline")
 inv_grid = NodePath("Panel/Inv")
 item_name_label = NodePath("Tooltip/MarginContainer/VBoxContainer/ItemName")
 item_desc_label = NodePath("Tooltip/MarginContainer/VBoxContainer/ItemDesc")
-yes_no_question = NodePath("YesNoQuestion")
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=1714095314]
 custom_minimum_size = Vector2(504, 312)
@@ -197,6 +195,3 @@ scroll_following = true
 scroll_following_visible_characters = true
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="YesNoQuestion" parent="." unique_id=1278865128 instance=ExtResource("5_oepx3")]
-layout_mode = 1

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cfxi6613xdlsy"]
+
+[ext_resource type="Script" uid="uid://bctc6c5oa46if" path="res://Common/Abstract/ui_canvas_layer.gd" id="1_k7iqw"]
+[ext_resource type="PackedScene" uid="uid://8pfp687oahi8" path="res://UI/MCInfoContainer.tscn" id="2_wp5yw"]
+[ext_resource type="PackedScene" uid="uid://dtju0fckgyow3" path="res://UI/Inv.tscn" id="3_162kg"]
+[ext_resource type="PackedScene" uid="uid://vl5ruu051bng" path="res://UI/YesNoQuestion.tscn" id="4_tcc1k"]
+
+[node name="UICanvasLayer" type="CanvasLayer" unique_id=10067536 node_paths=PackedStringArray("mc_ui", "inv", "yes_no_question")]
+script = ExtResource("1_k7iqw")
+mc_ui = NodePath("McInfoContainer")
+inv = NodePath("InvControl")
+yes_no_question = NodePath("YesNoQuestion")
+
+[node name="McInfoContainer" parent="." unique_id=2108794331 instance=ExtResource("2_wp5yw")]
+anchor_right = 0.35200003
+anchor_bottom = 0.22900002
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -0.22401428
+offset_bottom = 0.06399536
+
+[node name="InvControl" parent="." unique_id=307309986 instance=ExtResource("3_162kg")]
+
+[node name="YesNoQuestion" parent="." unique_id=1278865128 instance=ExtResource("4_tcc1k")]

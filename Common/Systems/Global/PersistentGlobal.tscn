@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dsgocp6xnfg5t"]
+
+[ext_resource type="Script" uid="uid://dqkd6mm7r2hxv" path="res://Common/Systems/Global/persistent_global.gd" id="1_i3exq"]
+[ext_resource type="Script" uid="uid://dp171lqu1yuov" path="res://Common/Abstract/item.gd" id="2_fcelk"]
+[ext_resource type="Resource" uid="uid://dbq1i464k4chi" path="res://Content/Items/GenericKey.tres" id="3_sj6le"]
+
+[node name="PersistentGlobal" type="Node" unique_id=45716772]
+script = ExtResource("1_i3exq")
+current_items = Array[ExtResource("2_fcelk")]([ExtResource("3_sj6le")])

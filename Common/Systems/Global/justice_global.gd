@@ -5,8 +5,7 @@ var main_character : Entity
 var mc_max_speed_grounded : float = 2
 var mc_weapon_cooldown : int = 0
 @export var damage_notifier : PackedScene
-@export_file
-var starting_room : String
+@export_file var starting_room : String
 
 enum aim_state
 {
@@ -40,12 +39,18 @@ func mc_fire_weapon(entity: Entity):
 			projectile.position.x += -5 if entity.entity_sprite.flip_h else 5
 			projectile.velocity.y = 16
 	projectile.entity_sprite.rotation = projectile.velocity.angle()
+	projectile.entity_owner = main_character
 	entity.entities_pool.add_entity(projectile)
 
-func _ready() -> void:
+func start_game():
 	MetSys.reset_state()
 	MetSys.set_save_data()
+	get_tree().change_scene_to_file("res://Content/Main.tscn")
 	load_room(starting_room)
+
+func restart_game():
+	MetSys.reset_state()
+	MetSys.set_save_data()
 
 func _physics_process(delta: float) -> void:
 	if mc_weapon_cooldown > 0:

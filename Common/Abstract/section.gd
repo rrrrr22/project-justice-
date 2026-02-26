@@ -7,7 +7,7 @@ var camera_3D : Camera3D
 @export
 var sectionMainTiles : TileMapLayer
 
-func _ready() -> void:
+func _init() -> void:
 	section_ready()
 	
 func _physics_process(delta: float) -> void:
@@ -27,7 +27,8 @@ func _physics_process(delta: float) -> void:
 		camera_3D.position = Vector3(0,0,0.6)
 	
 	JusticeGlobal.camera_position = camera.get_screen_center_position()
-	MetSys.get_current_room_instance().adjust_camera_limits(camera)
+	if MetSys.current_room:
+		MetSys.get_current_room_instance().adjust_camera_limits(camera)
 	section_update()
 
 func section_update():

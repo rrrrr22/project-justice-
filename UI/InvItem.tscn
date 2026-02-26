@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://h7a6h468b4mb" path="res://UI/InvItem.gd" id="2_7gry2"]
 
 [node name="InvItem" type="TextureRect" unique_id=620949039]
+process_mode = 2
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = -1
 anchor_right = 0.031000001

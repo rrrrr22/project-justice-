@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dbdyd2xshpqm7"]
+
+[ext_resource type="PackedScene" uid="uid://dcbeca0tl1is4" path="res://Common/Abstract/JusticeShaderMesh.tscn" id="1_lngpf"]
+[ext_resource type="Shader" uid="uid://cb1txh1v1r7e1" path="res://Graphics/Shaders/CloudyWindyShader.gdshader" id="2_4gti6"]
+[ext_resource type="Texture2D" uid="uid://ntu7l6xwc21s" path="res://Graphics/Noise/Clouds.tres" id="3_a4cad"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnuv0"]
+shader = ExtResource("2_4gti6")
+shader_parameter/cloud_noise = ExtResource("3_a4cad")
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/layer = 1
+shader_parameter/mesh_width = 0.0
+shader_parameter/mesh_height = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jq0qo"]
+resource_local_to_scene = true
+shader = ExtResource("2_4gti6")
+shader_parameter/cloud_noise = ExtResource("3_a4cad")
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/layer = 2
+shader_parameter/mesh_width = 0.0
+shader_parameter/mesh_height = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fb00g"]
+resource_local_to_scene = true
+shader = ExtResource("2_4gti6")
+shader_parameter/cloud_noise = ExtResource("3_a4cad")
+shader_parameter/camera_position = Vector2(0, 0)
+shader_parameter/layer = 3
+shader_parameter/mesh_width = 0.0
+shader_parameter/mesh_height = 0.0
+
+[node name="DarkSky" type="Node2D" unique_id=963007780]
+
+[node name="JusticeShaderMesh" parent="." unique_id=1592430125 instance=ExtResource("1_lngpf")]
+material = SubResource("ShaderMaterial_pnuv0")
+
+[node name="JusticeShaderMesh2" parent="." unique_id=1632933746 instance=ExtResource("1_lngpf")]
+material = SubResource("ShaderMaterial_jq0qo")
+
+[node name="JusticeShaderMesh3" parent="." unique_id=138441378 instance=ExtResource("1_lngpf")]
+material = SubResource("ShaderMaterial_fb00g")

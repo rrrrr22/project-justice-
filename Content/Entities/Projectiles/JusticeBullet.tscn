@@ -50,13 +50,19 @@ scenes_on_kill = Array[PackedScene]([ExtResource("2_bkayu")])
 entity_sprite = NodePath("EntitySprite")
 queue_free_on_kill = true
 
-[node name="OnSpawnAudio" parent="." index="0" unique_id=1702584557]
-pitch_scale = 2.01
+[node name="StateMachine" parent="." index="0" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Projectile")
+
+[node name="Projectile" parent="StateMachine" index="0" unique_id=1828866448 instance=ExtResource("2_df8sa")]
+script = ExtResource("3_umbym")
+max_time_left = 5
+jump_height = null
+time_to_peak = null
+time_to_floor = null
 
 [node name="EntitySprite" parent="." index="1" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("4_0gkxf")]
 sprite_frames = SubResource("SpriteFrames_umbym")
 autoplay = "Idle"
-offset = Vector2(0, 0)
 entity = NodePath("..")
 rotate_towards_velocity = true
 
@@ -68,12 +74,5 @@ entity = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtfulArea" index="0" unique_id=1972580682]
 shape = SubResource("CircleShape2D_g70xn")
-
-[node name="StateMachine" parent="." index="6" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
-starting_state = NodePath("Projectile")
-
-[node name="Projectile" parent="StateMachine" index="0" unique_id=1828866448 instance=ExtResource("2_df8sa")]
-script = ExtResource("3_umbym")
-max_time_left = 5
 
 [connection signal="body_entered" from="HurtfulArea" to="HurtfulArea" method="on_tile_hit"]

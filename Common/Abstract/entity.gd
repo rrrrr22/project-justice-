@@ -77,10 +77,16 @@ func on_damage_taken(entity: Entity, hurtBox: EntityHurtbox):
 	entity_stats.take_damage(hurtBox.damage_amount)
 	JusticeGlobal.new_combat_text(position,hurtBox.damage_amount)
 	state_machine.on_damage_taken(entity, hurtBox)
-	
+	if self == JusticeGlobal.main_character:
+		for i in PersistentGlobal.current_items:
+			i.on_mc_taking_hit(hurtBox.entity)
+			
 func on_damage_dealt(entity: Entity, hurtBox: EntityHurtbox):
 	state_machine.on_damage_dealt(entity, hurtBox)
-
+	if entity_owner == JusticeGlobal.main_character:
+		for i in PersistentGlobal.current_items:
+			i.on_target_hit(hurtBox.entity,entity)
+		
 func on_killing_an_entity(entity: Entity, hurtBox: EntityHurtbox):
 	pass
 	
@@ -91,7 +97,7 @@ func kill():
 	for packed in scenes_on_kill:
 		var scene = packed.instantiate()
 		if scene is Node2D:
-			scene.position = position + velocity
+			scene.position = position
 		get_tree().current_scene.add_child(scene)
 	if sprite_visible_on_kill:
 		entity_sprite.visible = true
@@ -100,7 +106,7 @@ func kill():
 	remove_child(remove_child_on_kill)
 	if queue_free_on_kill:
 		queue_free()
-	if audio_spawn.playing:
+	if audio_spawn && audio_spawn.playing:
 		audio_spawn.reparent(get_parent())
 	on_kill()
 	

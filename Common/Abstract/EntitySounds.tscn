@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://blh8ryugovfpq"]
+
+[ext_resource type="Script" uid="uid://fy44pkpomo7g" path="res://Common/Abstract/EntitySounds.gd" id="1_8rvhl"]
+
+[node name="EntitySounds" type="Node2D" unique_id=288209382]
+
+[node name="OnSpawnAudio" type="AudioStreamPlayer2D" parent="." unique_id=138778506 node_paths=PackedStringArray("entity")]
+max_polyphony = 32
+script = ExtResource("1_8rvhl")
+entity = NodePath("")
+
+[node name="OnKillAudio" type="AudioStreamPlayer2D" parent="." unique_id=871840248 node_paths=PackedStringArray("entity")]
+max_polyphony = 32
+script = ExtResource("1_8rvhl")
+entity = NodePath("")
+
+[node name="OnJumpAudio" type="AudioStreamPlayer2D" parent="." unique_id=1029317636 node_paths=PackedStringArray("entity")]
+max_polyphony = 32
+script = ExtResource("1_8rvhl")
+entity = NodePath("")
+
+[node name="OnJumpHitAudio" type="AudioStreamPlayer2D" parent="." unique_id=2134320334 node_paths=PackedStringArray("entity")]
+max_polyphony = 32
+script = ExtResource("1_8rvhl")
+entity = NodePath("")

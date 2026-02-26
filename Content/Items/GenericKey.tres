@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemKey" format=3 uid="uid://dbq1i464k4chi"]
+
+[ext_resource type="Script" uid="uid://dl4wl5cgyam5v" path="res://Content/Items/key.gd" id="1_hl7mi"]
+[ext_resource type="Texture2D" uid="uid://bwgtcuu7u708u" path="res://Assets/Textures/GameThemeAssets/InvItems/GenericKey.png" id="2_wflh1"]
+
+[resource]
+script = ExtResource("1_hl7mi")
+texture = ExtResource("2_wflh1")
+item_name = "Key"
+item_desc = "A useless Key!"
+item_popup_texts = Array[String](["This Key is useless...", "Do you want to throw it away?"])
+item_consumable = true
+metadata/_custom_type_script = "uid://dl4wl5cgyam5v"

@@ -23,6 +23,7 @@ func scan() -> void:
 					exclude.append(node)
 				hit_something = true
 				node.take_hit(self)
+				entity.on_damage_dealt(node.entity,self)
 				on_hit(node)
 				if hitbox_penetration == 0:
 					break

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://jja607sxr4xv"]
+
+[sub_resource type="GDScript" id="GDScript_lkq1x"]
+script/source = "class_name AnimatedUi extends Control
+
+@export_range(-360,360,0.1) var direction_degree : float
+var original_position : Vector2
+@export var is_shown_from_start : bool = false
+@export var offset : float = 256
+var is_animating : bool = false
+var position_with_offset : Vector2 = Vector2.ZERO
+var is_active : bool = false
+@export var animation_speed : float = 1
+func _ready() -> void:
+	original_position = position
+	position_with_offset = original_position + Vector2.RIGHT.rotated(deg_to_rad(direction_degree)) * offset
+	if is_shown_from_start:
+		is_active = true
+		return
+	position = position_with_offset
+	
+func _physics_process(delta: float) -> void:
+	if is_active && !JusticeUI.is_processing_something:
+		run()
+
+func enable():
+	visible = true
+	is_animating = true
+	create_tween().tween_property(self,\"position\",original_position,animation_speed).finished.connect(
+		func(): 
+			is_animating = false
+			is_active = true
+	)
+
+func run():
+	for child in get_children():
+		if child.has_method(\"post_animation_tick\"):
+			child.post_animation_tick()
+			JusticeUI.is_processing_something = true
+
+func disable():
+	create_tween().tween_property(self,\"position\",position_with_offset,animation_speed).finished.connect(
+	func(): 
+		is_animating = false
+		is_active = false
+		visible = false
+
+	)
+"
+
+[node name="AnimatedUi" type="Control" unique_id=1751911619]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_lkq1x")

@@ -1,3 +1,35 @@
 [gd_scene format=3 uid="uid://dang4kdoadj80"]
 
-[node name="StartingScene" type="Node" unique_id=1931760361]
+[ext_resource type="PackedScene" uid="uid://bgyg2f7ten7c0" path="res://UI/MainMenu/start_game.tscn" id="1_683g5"]
+[ext_resource type="Script" uid="uid://81swgl7mrr0t" path="res://Content/starting_scene.gd" id="1_dvvth"]
+[ext_resource type="PackedScene" uid="uid://cl28p7770rlvj" path="res://UI/MainMenu/exit_game.tscn" id="2_dvvth"]
+
+[node name="Main" type="Node2D" unique_id=1994828607]
+
+[node name="MainMenu" type="CanvasLayer" parent="." unique_id=699543891]
+script = ExtResource("1_dvvth")
+
+[node name="CenterContainer" type="CenterContainer" parent="MainMenu" unique_id=250864735]
+custom_minimum_size = Vector2(256, 256)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/CenterContainer" unique_id=2017060945]
+custom_minimum_size = Vector2(512, 384)
+layout_mode = 2
+alignment = 1
+
+[node name="StartGame" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=889331530 node_paths=PackedStringArray("main_menu") instance=ExtResource("1_683g5")]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ExitGame")
+main_menu = NodePath("../../..")
+is_focused = true
+
+[node name="ExitGame" parent="MainMenu/CenterContainer/VBoxContainer" unique_id=1823711744 instance=ExtResource("2_dvvth")]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartGame")

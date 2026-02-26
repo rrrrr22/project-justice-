@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dang4kdoadj80"]
+
+[ext_resource type="PackedScene" uid="uid://bgyg2f7ten7c0" path="res://UI/MainMenu/start_game.tscn" id="1_683g5"]
+[ext_resource type="PackedScene" uid="uid://cl28p7770rlvj" path="res://UI/MainMenu/exit_game.tscn" id="2_dvvth"]
+
+[node name="StartingScene" type="Node2D" unique_id=186884888]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=699543891]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer" unique_id=250864735]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer" unique_id=2017060945]
+layout_mode = 2
+alignment = 1
+
+[node name="StartGame" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=889331530 instance=ExtResource("1_683g5")]
+layout_mode = 2
+is_focused = true
+
+[node name="ExitGame" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=1287005201 instance=ExtResource("2_dvvth")]
+layout_mode = 2

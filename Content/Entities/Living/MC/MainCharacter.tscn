@@ -91,7 +91,7 @@ region = Rect2(32, 128, 16, 16)
 atlas = ExtResource("5_4wc7f")
 region = Rect2(48, 128, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vnxwv"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nric3"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -207,10 +207,24 @@ body = NodePath("Collision")
 entity_stats = SubResource("Resource_bjayn")
 
 [node name="EntitySprite" parent="." index="0" unique_id=1272832984 node_paths=PackedStringArray("entity") instance=ExtResource("4_ydgqx")]
-sprite_frames = SubResource("SpriteFrames_vnxwv")
+sprite_frames = SubResource("SpriteFrames_nric3")
 animation = &"Walk2"
 autoplay = "Idle0"
 entity = NodePath("..")
+
+[node name="StateMachine" parent="." index="1" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
+starting_state = NodePath("Grounded")
+
+[node name="Jumping" parent="StateMachine" index="0" unique_id=1066932445 instance=ExtResource("7_qpbr5")]
+script = ExtResource("7_debbp")
+jump_height = 96.0
+time_to_peak = 45.0
+time_to_floor = 32.0
+jump_sound = ExtResource("7_2wrr6")
+jump_hit_sound = ExtResource("8_tu111")
+
+[node name="Grounded" parent="StateMachine" index="1" unique_id=952328017 instance=ExtResource("7_qpbr5")]
+script = ExtResource("8_debbp")
 
 [node name="Collision" parent="." index="2" unique_id=2092463269 node_paths=PackedStringArray("entity") instance=ExtResource("3_4wc7f")]
 collision_layer = 1
@@ -230,17 +244,3 @@ entity = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntityHitBox" index="0" unique_id=393163620]
 shape = SubResource("RectangleShape2D_tu111")
-
-[node name="StateMachine" parent="." index="7" unique_id=453758574 node_paths=PackedStringArray("starting_state")]
-starting_state = NodePath("Grounded")
-
-[node name="Jumping" parent="StateMachine" index="0" unique_id=1066932445 instance=ExtResource("7_qpbr5")]
-script = ExtResource("7_debbp")
-jump_height = 96.0
-time_to_peak = 45.0
-time_to_floor = 32.0
-jump_sound = ExtResource("7_2wrr6")
-jump_hit_sound = ExtResource("8_tu111")
-
-[node name="Grounded" parent="StateMachine" index="1" unique_id=952328017 instance=ExtResource("7_qpbr5")]
-script = ExtResource("8_debbp")

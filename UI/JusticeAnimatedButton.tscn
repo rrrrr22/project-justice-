@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://biy8eeqr6irxo"]
+
+[ext_resource type="Script" uid="uid://c2jkt3jgdohx7" path="res://UI/justice_animated_button.gd" id="1_gj7vv"]
+
+[node name="JusticeAnimatedButton" type="RichTextLabel" unique_id=2067753253]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.083000004
+offset_bottom = 0.12799835
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+script = ExtResource("1_gj7vv")

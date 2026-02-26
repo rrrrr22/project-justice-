@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cmrwl6fq2hv0"]
+
+[ext_resource type="Script" uid="uid://cj3dr13ucfx0r" path="res://Common/Abstract/interactable_entity.gd" id="1_dx5qy"]
+
+[node name="InteractableEntity" type="Area2D" unique_id=1775396638]
+script = ExtResource("1_dx5qy")
+metadata/_custom_type_script = "uid://bjwcd6xnu3333"

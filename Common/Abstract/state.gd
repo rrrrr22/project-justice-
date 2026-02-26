@@ -36,7 +36,7 @@ var jump_force : float:
 
 var player : Entity:
 	get:
-		return JusticeGlobal.player
+		return JusticeGlobal.main_character
 
 signal change(state: State, next_state_name: String)
 

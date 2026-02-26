@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfxi6613xdlsy"]
+
+[ext_resource type="Script" uid="uid://bctc6c5oa46if" path="res://Common/Abstract/ui_canvas_layer.gd" id="1_2fuct"]
+[ext_resource type="PackedScene" uid="uid://dkhlbwjuk0v08" path="res://UI/IngameUI/inventory_manager.tscn" id="2_2fuct"]
+[ext_resource type="PackedScene" uid="uid://8pfp687oahi8" path="res://UI/MCInfoContainer.tscn" id="2_2kt82"]
+
+[node name="UIManager" type="CanvasLayer" unique_id=10067536 node_paths=PackedStringArray("mc_ui")]
+process_mode = 3
+script = ExtResource("1_2fuct")
+mc_ui = NodePath("Control/McInfoContainer")
+invetory_screen = ExtResource("2_2fuct")
+
+[node name="Control" type="Control" parent="." unique_id=325060890]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="McInfoContainer" parent="Control" unique_id=2108794331 instance=ExtResource("2_2kt82")]
+layout_mode = 1
+anchor_right = 0.35200003
+anchor_bottom = 0.22900002
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -0.22401428
+offset_bottom = 0.06399536

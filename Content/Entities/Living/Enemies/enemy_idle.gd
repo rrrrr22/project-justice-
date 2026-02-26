@@ -11,7 +11,7 @@ func on_entered(entity: Entity, prev: String) -> void:
 
 func on_update(entity: Entity) -> void:
 	apply_gravity(entity)
-	if JusticeGlobal.player.position.distance_to(entity.position) <= alert_distance:
+	if JusticeGlobal.main_character.position.distance_to(entity.position) <= alert_distance:
 		change.emit(self,on_alert_state)
 		
 func on_damage_taken(victim: Entity,attacker: Entity, hurtBox: EntityHurtbox):

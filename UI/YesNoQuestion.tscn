@@ -10,6 +10,7 @@ border_width_right = 4
 border_width_bottom = 4
 
 [node name="YesNoQuestion" type="Control" unique_id=1278865128 node_paths=PackedStringArray("question")]
+process_mode = 2
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 3
 anchor_top = 0.00033338866

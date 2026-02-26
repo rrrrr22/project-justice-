@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ck8p2yibc8tde"]
+
+[ext_resource type="PackedScene" uid="uid://cmsa4u7osm8x" path="res://UI/IngameUI/Popup.tscn" id="1_354cj"]
+
+[sub_resource type="GDScript" id="GDScript_olgfg"]
+script/source = "extends \"res://UI/IngameUI/popup.gd\"
+"
+
+[node name="Popup" unique_id=906546989 instance=ExtResource("1_354cj")]
+script = SubResource("GDScript_olgfg")
+question_at_the_end = null
